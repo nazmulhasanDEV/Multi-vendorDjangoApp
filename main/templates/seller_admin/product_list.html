@@ -1,0 +1,153 @@
+{%extends 'seller_admin/base.html' %}
+{% load static %}
+
+{% block page_content %}
+<!-- Page content -->
+<div id="page-content">
+    <!-- eCommerce Products Header -->
+    <div class="content-header">
+        <ul class="nav-horizontal text-center">
+            <li>
+                <a href="page_ecom_dashboard.html"><i class="fa fa-bar-chart"></i> Dashboard</a>
+            </li>
+            <li>
+                <a href="page_ecom_orders.html"><i class="gi gi-shop_window"></i> Orders</a>
+            </li>
+            <li>
+                <a href="page_ecom_order_view.html"><i class="gi gi-shopping_cart"></i> Order View</a>
+            </li>
+            <li class="active">
+                <a href="page_ecom_products.html"><i class="gi gi-shopping_bag"></i> Products</a>
+            </li>
+            <li>
+                <a href="page_ecom_product_edit.html"><i class="gi gi-pencil"></i> Product Edit</a>
+            </li>
+            <li>
+                <a href="page_ecom_customer_view.html"><i class="gi gi-user"></i> Customer View</a>
+            </li>
+        </ul>
+    </div>
+    <!-- END eCommerce Products Header -->
+
+    <!-- Quick Stats -->
+    <div class="row text-center">
+        <div class="col-sm-6 col-lg-3">
+            <a href="/add/product" class="widget widget-hover-effect2">
+                <div class="widget-extra themed-background-success">
+                    <h4 class="widget-content-light"><strong>Add New</strong> Product</h4>
+                </div>
+                <div class="widget-extra-full"><span class="h2 text-success animation-expandOpen"><i
+                        class="fa fa-plus"></i></span></div>
+            </a>
+        </div>
+        <div class="col-sm-6 col-lg-3">
+            <a href="javascript:void(0)" class="widget widget-hover-effect2">
+                <div class="widget-extra themed-background-danger">
+                    <h4 class="widget-content-light"><strong>Out of</strong> Stock</h4>
+                </div>
+                <div class="widget-extra-full"><span class="h2 text-danger animation-expandOpen">71</span></div>
+            </a>
+        </div>
+        <div class="col-sm-6 col-lg-3">
+            <a href="javascript:void(0)" class="widget widget-hover-effect2">
+                <div class="widget-extra themed-background-dark">
+                    <h4 class="widget-content-light"><strong>Top</strong> Sellers</h4>
+                </div>
+                <div class="widget-extra-full"><span class="h2 themed-color-dark animation-expandOpen">20</span></div>
+            </a>
+        </div>
+        <div class="col-sm-6 col-lg-3">
+            <a href="javascript:void(0)" class="widget widget-hover-effect2">
+                <div class="widget-extra themed-background-dark">
+                    <h4 class="widget-content-light"><strong>All</strong> Products</h4>
+                </div>
+                <div class="widget-extra-full"><span class="h2 themed-color-dark animation-expandOpen">4.982</span>
+                </div>
+            </a>
+        </div>
+    </div>
+    <!-- END Quick Stats -->
+
+    <!-- All Products Block -->
+    <div class="block full">
+        <!-- All Products Title -->
+        <div class="block-title">
+            <div class="block-options pull-right">
+                <a href="javascript:void(0)" class="btn btn-alt btn-sm btn-default" data-toggle="tooltip"
+                   title="Settings"><i class="fa fa-cog"></i></a>
+            </div>
+            <h2><strong>All</strong> Products</h2>
+        </div>
+        <!-- END All Products Title -->
+
+        <!-- All Products Content -->
+        <table id="ecom-products" class="table table-bordered table-striped table-vcenter">
+            <thead>
+            <tr>
+                <th class="text-center" style="width: 70px;">ID</th>
+                <th class="text-center">Product Name</th>
+                <th class="text-center hidden-xs">Price</th>
+                <th class="hidden-xs text-center">Status</th>
+                <th class="hidden-xs text-center">Available Colors</th>
+                <th class="hidden-xs text-center">Added</th>
+                <th class="hidden-xs text-center">Condition</th>
+                <th class="text-center">Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for product in all_products %}
+            {% if request.user == product.seller_identity %}
+            {% if product.product_InStocks != 0 %}
+            <tr>
+                <td class="text-center"><a
+                        href="page_ecom_product_edit.html"><strong>{{product.product_id}}</strong></a></td>
+                <td class="text-center"><a href="page_ecom_product_edit.html">{{product.product_name}}</a></td>
+                <td class="text-center hidden-xs"><strong>{{product.product_price}}</strong></td>
+                <td class="hidden-xs text-center">
+                    <span class="label label-success">Available ({{product.product_InStocks}})</span>
+                </td>
+                <td class="text-center">{{product.product_available_colors}}</td>
+                <td class="hidden-xs text-center">{{product.prduct_adding_date}}</td>
+                <td class="hidden-xs text-center">{{product.product_condition}}</td>
+                <td class="text-center">
+                    <div class="btn-group btn-group-xs">
+                        <a href="{% url 'editProduct' pk=product.pk %}" data-toggle="tooltip" title="Edit"
+                           class="btn btn-default"><i class="fa fa-pencil"></i></a>
+                        <a href="{% url 'delProduct' pk=product.pk %}" data-toggle="tooltip" title="Delete"
+                           class="btn btn-xs btn-danger"><i class="fa fa-times"></i></a>
+                    </div>
+                </td>
+            </tr>
+            {% else %}
+            <tr>
+                <td class="text-center"><a
+                        href="page_ecom_product_edit.html"><strong>{{product.product_id}}</strong></a></td>
+                <td class="text-center"><a href="page_ecom_product_edit.html">{{product.product_name}}</a></td>
+                <td class="text-right hidden-xs"><strong>{{product.product_price}}</strong></td>
+                <td class="hidden-xs text-center">
+                    <span class="label label-danger">Out of Stock</span>
+                </td>
+                <td class="text-center">{{product.product_available_colors}}</td>
+                <td class="hidden-xs text-center">{{product.prduct_adding_date}}</td>
+                <td class="hidden-xs text-center">{{ product.product_condition }}</td>
+                <td class="text-center">
+                    <div class="btn-group btn-group-xs">
+                        <a href="{% url 'editProduct' pk=product.pk %}" data-toggle="tooltip" title="Edit"
+                           class="btn btn-default"><i class="fa fa-pencil"></i></a>
+                        <a href="#" data-toggle="tooltip" title="Delete" class="btn btn-xs btn-danger"><i
+                                class="fa fa-times"></i></a>
+                    </div>
+                </td>
+            </tr>
+            {% endif %}
+            {% endif %}
+            {% endfor %}
+            </tbody>
+        </table>
+        <!-- END All Products Content -->
+    </div>
+    <!-- END All Products Block -->
+</div>
+<!-- END Page Content -->
+
+{% endblock %}

@@ -1,0 +1,93 @@
+{% extends 'super_admin/base.html' %}
+{% load static %}
+
+{% block page_content %}
+<div class="main-panel">
+        <div class="content-wrapper">
+          <div class="row">
+            <div class="col-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title"><b>Edit Slider To Home Page</b></h4>
+                  <p class="card-description">
+                    Edit Slider
+                  </p>
+<!--                  Django message frameword -->
+<!--                            {% if messages %}-->
+<!--                              <ul class="messages">-->
+<!--                              {% for message in messages %}-->
+<!--                              <h4{% if message.tags %} class="text-{{ message.tags }}"{% endif %}>{{ message }}</h4>-->
+<!--                              {% endfor %}-->
+<!--                              </ul>-->
+<!--						   {% endif %}-->
+
+                  <form class="forms-sample" action="{%url 'editSliderToHomePage' pk=pk %}" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group">
+                      <label for="exampleInputName1">Slider Title</label>
+                      <input type="text" class="form-control" id="slider_title" name="slider_title" value="{{slider_data.slider_img_title}}" placeholder="Slider Title">
+                    </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                      <label for="exampleInputName1">Slider Subtitle</label>
+                      <input type="text" class="form-control" id="slider_subtitle" name="slider_subtitle" value="{{slider_data.slider_img_subtitle}}" placeholder="Slider Subtitle">
+                    </div>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label>Upload Image Slider (<span style="color:red;">only image</span>)</label>
+                      <div class="input-group col-xs-6">
+                        <input type="file" name="slider_img"  id="slider_img" class="form-control" onchange="previewImg(this);">
+                      </div>
+                    </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                      <label>Uploaded Image</label>
+                      <div class="input-group col-xs-6">
+                        <img src="{{slider_data.slider_img_url}}" name="slider_img_preview" id="slider_img_preview" style="width:70%; height:160px; margin-left:50px;" alt="">
+                      </div>
+                    </div>
+<!--                        script for pre-viewing image -->
+                          <script>
+                                                function previewImg(input){
+                                                    var file = $("#slider_img").get(0).files[0];
+
+                                                    if(file){
+                                                        var reader = new FileReader();
+
+                                                        reader.onload = function(){
+                                                            $("#slider_img_preview").attr("src", reader.result);
+                                                        }
+
+                                                        reader.readAsDataURL(file);
+                                                    }
+                                                }
+                                            </script>
+
+                      </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- content-wrapper ends -->
+        <!-- partial:../../partials/_footer.html -->
+        <footer class="footer">
+          <div class="d-sm-flex justify-content-center justify-content-sm-between">
+            <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2018 <a href="https://www.urbanui.com/" target="_blank">Urbanui</a>. All rights reserved.</span>
+            <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Hand-crafted & made with <i class="far fa-heart text-danger"></i></span>
+          </div>
+        </footer>
+        <!-- partial -->
+      </div>
+{% endblock %}

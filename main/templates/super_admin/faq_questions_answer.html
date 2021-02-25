@@ -1,0 +1,121 @@
+{% extends 'super_admin/base.html' %}
+{% load static %}
+
+{% block page_content %}
+<div class="main-panel">
+        <div class="content-wrapper">
+
+<!--            add FAQ questions and answer   -->
+            <div class="row">
+            <div class="col-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h3 class="card-title"><b>Add New FAQ Question And Answer!</b></h3>
+                  <p class="card-description">
+                    Add FAQ Questions And Answer!
+                  </p>
+                    <!--                  Django message frameword -->
+                            {% if messages %}
+                              <ul class="messages">
+                              {% for message in messages %}
+                              <h4{% if message.tags %} class="text-{{ message.tags }}"{% endif %}>{{ message }}</h4>
+                              {% endfor %}
+                              </ul>
+						   {% endif %}
+                  <form class="forms-sample" action="{%url 'siteFaqsAnswer' %}" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="row">
+
+                      <div class="col-md-6">
+                        <div class="form-group">
+                      <input type="text" class="form-control" id="faq_question" name="faq_question" placeholder="Add FAQ Question" required>
+                    </div>
+                      </div>
+
+                      <div class="col-md-6">
+                        <div class="form-group">
+                            <select class="form-control" name="faq_category" id="" required>
+                                {% for faq_category in faq_categories %}
+                                <option value="{{faq_category.pk}}">{{faq_category.faq_category}}</option>
+                                {% endfor %}
+                            </select>
+                    </div>
+                      </div>
+
+                    </div>
+
+                      <div class="row">
+                      <div class="col-md-12">
+                        <div class="form-group">
+                            <textarea name="faq_answer" id="faq_answer" class="form-control" cols="" rows="10" placeholder="FAQ Answer"></textarea>
+                    </div>
+                      </div>
+                    </div>
+                     <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+
+<!--          data table -->
+          <div class="row">
+            <div class="col-md-12">
+              <div class="page-header">
+            <h3 class="page-title">
+              FAQ List
+            </h3>
+          </div>
+              <div class="card">
+            <div class="card-body">
+              <h4 class="card-title">Data table</h4>
+              <div class="row">
+                <div class="col-12">
+                  <div class="table-responsive">
+                    <table id="order-listing" class="table">
+                      <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Question</th>
+                            <th>Answer</th>
+                            <th>FAQ Category</th>
+                            <th>Action</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                      {% for faq in faqs %}
+                        <tr>
+                            <td>{{forloop.counter}}</td>
+                            <td>{{faq.faq_question}}</td>
+                            <td>{{faq.faq_ans}}</td>
+                            <td>{{faq.faq_category}}</td>
+                            <td>
+                                <div class="btn-group">
+<!--                                    <a href="" data-toggle="tooltip" class="btn btn-sm btn-success"><i class="fa fa-edit"></i> Edit</a>-->
+                                    <a href="{%url 'siteFaqDelete' pk=faq.pk %}" data-toggle="tooltip" class="btn btn-sm btn-danger"><i class="fa fa-times"></i> Delete</a>
+                                </div>
+                            </td>
+                        </tr>
+                      {% endfor %}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+            </div>
+          </div>
+        </div>
+        <!-- content-wrapper ends -->
+        <!-- partial:../../partials/_footer.html -->
+        <footer class="footer">
+          <div class="d-sm-flex justify-content-center justify-content-sm-between">
+            <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2018 <a href="https://www.urbanui.com/" target="_blank">Urbanui</a>. All rights reserved.</span>
+            <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Hand-crafted & made with <i class="far fa-heart text-danger"></i></span>
+          </div>
+        </footer>
+        <!-- partial -->
+      </div>
+{% endblock %}
+

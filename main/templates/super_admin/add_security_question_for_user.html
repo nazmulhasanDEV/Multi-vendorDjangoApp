@@ -1,0 +1,119 @@
+<!-- This template for In Person service category -->
+
+{% extends 'super_admin/base.html' %}
+{% load static %}
+
+{% block page_content %}
+<div class="main-panel">
+    <div class="content-wrapper">
+        <!--                  Django message frameword -->
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <h4{% if message.tags %} class="text-{{ message.tags }}"{% endif %}>{{ message }}</h4>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        <div class="row">
+            <div class="col-12 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title"><b>Add New Security Question For User</b></h4>
+                        <p class="card-description">
+                            Add Security Question & Help User To Make Their Account More Secure
+                        </p>
+
+                        <form class="forms-sample" action="{%url 'addSecurityQuestionForUser' %}" method="post"
+                              enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" id="add_sequrity_question_for_user"
+                                               name="add_sequrity_question_for_user" placeholder="Add Security Question"
+                                               autofocus="" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6"></div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <button type="submit" class="btn btn-success mr-2">Add New Security Question
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="col-md-6"></div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--         slider data table -->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="page-header">
+                    <h3 class="page-title">
+                        Security Question List
+                    </h3>
+
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">All The Security Questions For User</h4>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="table-responsive">
+                                    {% if security_questions %}
+                                    <table id="order-listing" class="table">
+                                        <thead>
+                                        <tr>
+                                            <th class="text-center">ID</th>
+                                            <th class="text-center">Question</th>
+                                            <th class="text-center">Action</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        {% for question in security_questions %}
+                                        <tr>
+                                            <td class="text-center">{{forloop.counter}}</td>
+                                            <td class="text-center">{{question.question}}</td>
+                                            <td class="text-center">
+                                                <div class="btn-group">
+<!--                                                    <a href="#" data-toggle="tooltip" class="btn btn-sm btn-success"><i-->
+<!--                                                            class="fa fa-edit"></i> Edit</a>-->
+                                                    <a href="{%url 'delSecurityQuestionForUser' pk=question.pk %}"
+                                                       data-toggle="tooltip" class="btn btn-sm btn-danger"><i
+                                                            class="fa fa-times"></i> Delete</a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        {% endfor %}
+                                        </tbody>
+                                    </table>
+                                    {% else %}
+                                        <h5 class="text-center">No Question Added Yet!</h5>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- content-wrapper ends -->
+    <!-- partial:../../partials/_footer.html -->
+    <footer class="footer">
+        <div class="d-sm-flex justify-content-center justify-content-sm-between">
+            <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2018 <a
+                    href="https://www.urbanui.com/" target="_blank">BIZKONNECT</a>. All rights reserved.</span>
+            <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Hand-crafted & made with <i
+                    class="far fa-heart text-danger"></i></span>
+        </div>
+    </footer>
+    <!-- partial -->
+</div>
+{% endblock %}

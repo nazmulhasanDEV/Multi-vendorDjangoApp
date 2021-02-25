@@ -1,0 +1,109 @@
+<!-- This template for Online service sub-category -->
+
+{% extends 'super_admin/base.html' %}
+{% load static %}
+
+{% block page_content %}
+<div class="main-panel">
+        <div class="content-wrapper">
+          <!--                  Django message frameword -->
+                            {% if messages %}
+                              <ul class="messages">
+                              {% for message in messages %}
+                              <h4{% if message.tags %} class="text-{{ message.tags }}"{% endif %}>{{ message }}</h4>
+                              {% endfor %}
+                              </ul>
+						   {% endif %}
+          <div class="row">
+            <div class="col-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title"><b>Add New Sub-Category</b></h4>
+                  <p class="card-description">
+                    Add New Service Sub-Category
+                  </p>
+
+
+                  <form class="forms-sample" action="{% url 'addInpersonSubcat' pk=pk %}" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group">
+                      <input type="text" class="form-control" id="add_service_subcategory" name="add_service_subcategory" autofocus="" placeholder="Add Service Sub-category" required>
+                    </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <input type="file" class="form-control" name="subcat_img" id="subcat_img" required>
+                    </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="form-group">
+                          <button type="submit" class="btn btn-success mr-2">Add New Service Sub-category</button>
+                    </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+<!--         slider data table -->
+          <div class="row">
+            <div class="col-md-12">
+              <div class="page-header">
+            <h3 class="page-title">
+              Service Subcategory list
+            </h3>
+
+          </div>
+              <div class="card">
+            <div class="card-body">
+              <h4 class="card-title">Service Sub-Category List</h4>
+              <div class="row">
+                <div class="col-12">
+                  <div class="table-responsive">
+                    <table id="order-listing" class="table">
+                      <thead>
+                        <tr>
+                            <th class="text-control">ID</th>
+                            <th class="text-control">Sub-Category Name</th>
+                            <th class="text-control">Sub-Category Image</th>
+                            <th class="text-control">Action</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                      {% for subcat in inperson_subcat_list %}
+                        <tr>
+                            <td class="text-control">{{forloop.counter}}</td>
+                          <td class="text-control">{{subcat.name}}</td>
+                          <td class="text-control"><img src="{{subcat.img.url}}" alt=""></td>
+                          <td class="text-control">
+                             <div class="btn-group">
+                                    <a href="#" data-toggle="tooltip" class="btn btn-sm btn-success"><i class="fa fa-edit"></i> Edit</a>
+                                    <a href="{%url 'delInpersonSubcat' pk=subcat.pk %}" data-toggle="tooltip" class="btn btn-sm btn-danger"><i class="fa fa-times"></i> Delete</a>
+                                </div>
+                          </td>
+                        </tr>
+                      {% endfor %}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+            </div>
+          </div>
+        </div>
+        <!-- content-wrapper ends -->
+        <!-- partial:../../partials/_footer.html -->
+        <footer class="footer">
+          <div class="d-sm-flex justify-content-center justify-content-sm-between">
+            <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2018 <a href="https://www.urbanui.com/" target="_blank">Urbanui</a>. All rights reserved.</span>
+            <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Hand-crafted & made with <i class="far fa-heart text-danger"></i></span>
+          </div>
+        </footer>
+        <!-- partial -->
+      </div>
+{% endblock %}

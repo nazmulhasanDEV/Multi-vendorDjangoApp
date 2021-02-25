@@ -1,0 +1,106 @@
+{%extends 'seller_admin/base.html' %}
+{% load static %}
+
+{% block page_content %}
+
+<!-- Page content -->
+<div id="page-content">
+    <!-- eCommerce Product Edit Header -->
+    <div class="content-header">
+        <ul class="nav-horizontal text-center">
+            <li>
+                <a href="page_ecom_dashboard.html"><i class="fa fa-bar-chart"></i> Dashboard</a>
+            </li>
+            <li>
+                <a href="page_ecom_orders.html"><i class="gi gi-shop_window"></i> Orders</a>
+            </li>
+            <li>
+                <a href="page_ecom_order_view.html"><i class="gi gi-shopping_cart"></i> Order View</a>
+            </li>
+            <li>
+                <a href="page_ecom_products.html"><i class="gi gi-shopping_bag"></i> Products</a>
+            </li>
+            <li class="active">
+                <a href="page_ecom_product_edit.html"><i class="gi gi-pencil"></i> Product Edit</a>
+            </li>
+            <li>
+                <a href="page_ecom_customer_view.html"><i class="gi gi-user"></i> Customer View</a>
+            </li>
+        </ul>
+    </div>
+
+
+    <!--                  Django message frameword -->
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <h4{% if message.tags %} class="text-{{ message.tags }}"{% endif %}>{{ message }}</h4>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+
+    <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-10 widget-extra themed-background-dark">
+            <h2 class="text-center" id="job_page_title">Online service related jobs available for you</h2>
+<!--            <hr>-->
+        </div>
+        <div class="col-md-1"></div>
+    </div>
+
+    <div class="row" id="job_list_section">
+        <div class="col-md-1"></div>
+        <div class="col-md-10" id="job_list">
+            <!-- Story Published -->
+           <li class="media">
+               <hr style="opacity:0;">
+        <a href="page_ready_user_profile.html" class="pull-left">
+            <img src="{% static 'seller_admin/img/placeholders/avatars/avatar1.jpg' %}" alt="Avatar" class="img-circle">
+        </a>
+        <div class="media-body">
+            <p class="push-bit">
+                <span class="text-muted pull-right">
+                    <small>45 min now</small>
+                    <span class="text-danger" data-toggle="tooltip" title="From Web"><i class="fa fa-globe"></i></span>
+                </span>
+                <strong><a href="page_ready_user_profile.html">Explorer</a> published a new story.</strong>
+            </p>
+            <h5><a href="page_ready_article.html"><strong>The Mountain Trip</strong> &bull; Once in a lifetime
+                experience</a></h5>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ultrices, justo vel imperdiet gravida,
+                urna ligula hendrerit nibh, ac cursus nibh sapien in purus. Mauris tincidunt tincidunt turpis in porta.
+                Etiam egestas fringilla enim, id convallis lectus laoreet at. Fusce purus nisi, gravida sed consectetur
+                ut, interdum quis nisi. Quisque egestas nisl id lectus facilisis scelerisque? Proin rhoncus dui at
+                ligula vestibulum ut facilisis ante sodales! Suspendisse potenti..</p>
+            <p>
+<!--                <a href="javascript:void(0)" class="btn btn-xs btn-success"><i class="fa fa-thumbs-up"></i> You Like it</a>-->
+<!--                <a href="javascript:void(0)" class="btn btn-xs btn-default"><i class="fa fa-share-square-o"></i>Share</a>-->
+                 <ul id="customer_info">
+                   <li><strong>Location: </strong>Florida, United States</li>
+                   <li><strong>Ratings: </strong><i class="fas fa-star"></i></li>
+                </ul>
+            </p>
+        </div>
+               <hr style="opacity:0;">
+    </li>
+           <!-- END Story Published -->
+
+        </div>
+        <div class="col-md-1"></div>
+    </div>
+
+    <br><br><br>
+    <!-- END Product Edit Content -->
+</div>
+<!-- END Page Content -->
+{% endblock %}
+
+
+
+
+
+
+
+
+

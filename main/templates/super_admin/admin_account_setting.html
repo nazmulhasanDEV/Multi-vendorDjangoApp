@@ -1,0 +1,108 @@
+{% extends 'super_admin/base.html' %}
+{% load static %}
+
+{% block page_content %}
+<div class="main-panel">
+    <div class="content-wrapper">
+
+
+         <!--                  Django message frameword -->
+                        {% if messages %}
+                        <ul class="messages">
+                            {% for message in messages %}
+                            <h4{% if message.tags %} class="text-{{ message.tags }}"{% endif %}>{{ message }}</h4>
+                            {% endfor %}
+                        </ul>
+                        {% endif %}
+<!--        ends django message framework -->
+
+        <!--            add security questions and answer   -->
+        <div class="row">
+            <div class="col-12 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+<!--                        <h3 class="card-title"><b>Account E-mail!</b></h3>-->
+<!--                        <p class="card-description">-->
+<!--                            Your email!-->
+<!--                        </p>-->
+
+                        <form class="forms-sample" action="{%url 'siteFaqsAnswer' %}" method="post"
+                              enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="row">
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="email"><h5>E-mail:</h5></label>
+                                        <input type="text" id="email" class="form-control" value="{{prefix_of_email}}" readonly>
+                                    </div>
+                                </div>
+
+                            </div>
+<!--                            <button type="submit" class="btn btn-primary mr-2">Add Answer</button>-->
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+<!--             end security question part -->
+
+
+         <!--            change password section   -->
+        <div class="row">
+            <div class="col-12 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <h3 class="card-title"><b>Change password</b></h3>
+<!--                        <p class="card-description">-->
+<!--                            Your email!-->
+<!--                        </p>-->
+
+                        <form class="forms-sample" action="{%url 'superAdminAccountSetting' %}" method="post"
+                              enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+<!--                                        <label for="email"><h4>E-mail:</h4></label>-->
+                                        <input type="text" name="old_password" class="form-control" placeholder="Old Password" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+<!--                                        <label for="email"><h4>E-mail:</h4></label>-->
+                                        <input type="text" name="new_password" class="form-control" placeholder="New Password" required>
+                                    </div>
+                                </div>
+                                 <div class="col-md-4">
+                                    <div class="form-group">
+<!--                                        <label for="email"><h4>E-mail:</h4></label>-->
+                                        <input type="text" name="confirm_password" class="form-control" placeholder="Confirm Password" required>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <button type="submit" class="btn btn-primary mr-2">Update Password</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+<!--             end security question part -->
+
+
+    </div>
+    <!-- content-wrapper ends -->
+    <!-- partial:../../partials/_footer.html -->
+    <footer class="footer">
+        <div class="d-sm-flex justify-content-center justify-content-sm-between">
+            <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2018 <a
+                    href="https://www.urbanui.com/" target="_blank">Urbanui</a>. All rights reserved.</span>
+            <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Hand-crafted & made with <i
+                    class="far fa-heart text-danger"></i></span>
+        </div>
+    </footer>
+    <!-- partial -->
+</div>
+{% endblock %}
+

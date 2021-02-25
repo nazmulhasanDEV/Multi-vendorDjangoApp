@@ -1,0 +1,30 @@
+#job_page_title{
+color: white;
+padding-top: 5px;
+padding-bottom: 5px;
+}
+
+#job_list_section {
+position: relative;
+top: 30px;
+}
+
+#job_list {
+background: white;
+}
+
+#job_list li{
+list-style-type: none;
+background: white;
+}
+
+.media-body #customer_info{
+position: relative;
+left: -40px;
+}
+.media-body #customer_info li{
+position: relative;
+display: inline-block;
+float: left;
+padding-left: 10px;
+}

@@ -1,0 +1,61 @@
+{% extends 'front_end/base.html' %}
+{% load static %}
+
+{% block main_block %}
+<br><br><br><br>
+<div id="page-content">
+    	<!--Page Title-->
+    	<div class="page section-header text-center">
+			<div class="page-title">
+        		<div class="wrapper"><h1 class="page-width">Enter Verification Code In 24 Hours</h1></div>
+      		</div>
+		</div>
+        <!--End Page Title-->
+
+        <div class="container">
+            <div class="row billing-fields">
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 sm-margin-30px-bottom"></div>
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 sm-margin-30px-bottom">
+                    <div class="create-ac-content bg-light-gray padding-20px-all">
+
+                            <!--                  Django message frameword -->
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <h4{% if message.tags %} class="text-{{ message.tags }} text-center"{% endif %}>{{ message }}</h4>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+                        <form action="{%url 'sellerVerificationCode' username=username %}" method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <fieldset>
+                                <div class="row">
+                                    <div class="form-group col-md-3 col-lg-3 col-xl-3 required"></div>
+                                    <div class="form-group col-md-6 col-lg-6 col-xl-6">
+                                        <label for="verification_code">Verification Code</label>
+                                        <input type="text" name="verification_code" value="" id="verification_code" required>
+                                    </div>
+                                    <div class="form-group col-md-3 col-lg-3 col-xl-3 required"></div>
+                                </div>
+                            </fieldset>
+
+                            <fieldset>
+                                <div class="row">
+                                    <div class="form-group col-md-4 col-lg-4 col-xl-4"></div>
+                                    <div class="form-group col-md-4 col-lg-4 col-xl-4">
+                                        <input type="submit" value="Verify" style="width: 90%;background-color:black;color:white;cursor:pointer;">
+                                    </div>
+                                    <div class="form-group col-md-4 col-lg-4 col-xl-4"></div>
+                                </div>
+                            </fieldset>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 sm-margin-30px-bottom"></div>
+            </div>
+        </div>
+
+    </div>
+{% endblock %}
+

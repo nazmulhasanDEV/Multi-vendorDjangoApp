@@ -1,0 +1,71 @@
+{%extends 'seller_admin/base.html' %}
+{% load static %}
+
+{% block page_content %}
+<!-- Page content -->
+<div id="page-content">
+    <!-- Table Styles Header -->
+    <div class="content-header">
+        <div class="header-section">
+            <h1>
+                <i class="gi gi-table"></i>Your Service List<br><small>Add more services and keep active to get more buyer!</small>
+            </h1>
+        </div>
+    </div>
+    <ul class="breadcrumb breadcrumb-top">
+        <li>Service</li>
+        <li><a href="">List</a></li>
+    </ul>
+    <!-- END Table Styles Header -->
+
+     <!--                  Django message frameword -->
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <h4{% if message.tags %} class="text-{{ message.tags }}"{% endif %}>{{ message }}</h4>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+    <!-- Table Styles Block -->
+    <div class="block">
+        <!-- Table Styles Title -->
+        <div class="block-title">
+            <h2><strong>Your</strong> Services</h2>
+        </div>
+    </div>
+    <!-- END Table Styles Block -->
+
+    <div class="container">
+        <div class="row">
+            {% for service in online_service_list %}
+            <div class="col-md-3">
+                <div class="card" style="">
+                    <img class="card-img-top" src="{{service.service_related_img1.url}}" width="100%" height="150px" alt="Card image cap">
+                    <div class="card-body">
+                        <h3 class="card-title">{{service.service_title}}</h3>
+                        <p class="card-text">{{service.service_description}}</p>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item"><b>Started at:</b> {{x.rel_with_cat.service_name}}</li>
+                        {% for x in service_subcat %}
+                        {% if x.cat_id == service.service_category and x.pk == service.service_subcategory %}
+                        <li class="list-group-item"><b>Category:</b> {{x.rel_with_cat.service_name}}</li>
+                        <li class="list-group-item"><b>Sub-Category:</b> {{x.subcategory_name}}</li>
+                        <li class="list-group-item"><b>Created:</b> {{service.joining_date}}</li>
+                        {% endif %}
+                        {% endfor %}
+                    </ul>
+                    <div class="card-body text-center">
+                        <a href="{% url 'editOnlineServiceList' pk=service.pk %}" class="card-link"><button type="button">Edit</button></a>
+                        <a href="{% url 'delOnlineServiceList' pk=service.pk %}" class="card-link"><button type="button">Delete</button></a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+</div>
+<!-- END Page Content -->
+{% endblock %}

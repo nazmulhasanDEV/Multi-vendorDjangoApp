@@ -1,0 +1,97 @@
+{% extends 'front_end/base.html' %}
+{% load static %}
+
+<!--css style sheet link-->
+{% block seller_list %}
+ <link rel="stylesheet" type="text/css" href="{% static 'seller_list/css/index.css' %}">
+
+ <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+
+ <!--    font awesome link -->
+    <script src="https://kit.fontawesome.com/844afe38f3.js" crossorigin="anonymous"></script>
+{% endblock %}
+
+<!-- main content -->
+{% block main_block %}
+<br><br><br>
+
+    <div class="container-fluid">
+        <p> <a href="#">first link</a> <i class="fas fa-angle-right"></i> <a href="#">second link</a> </p>
+<!--        <h2 class="text-center">Card Header and Footer</h2>-->
+<!--        <p class="text-center">The dummy text showing here. choose any of service!</p>-->
+
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-3"></div>
+            <div class="col-md-3">
+                <span class="text-right">Filter By Online Status: </span>
+                <div class="form-group">
+                    <select id="demo_overview" class="form-control" data-placeholeder='choose' data-role="select-dropdown">
+                        <!-- options -->
+                        <option value="all" Selected>All</option>
+                        <option value="">Only Online</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <span class="text-right">Filter By State: </span>
+                <div class="form-group">
+                    <select id="demo_overview" class="form-control" data-placeholeder='choose' data-role="select-dropdown">
+                        <!-- options -->
+                        <option value="all" Selected>All</option>
+                        <option value="">Florida</option>
+                        <option value="">Californiya</option>
+                        <option value="">New York</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <br>
+
+        <div class="row">
+            {% if seller_list|length != 0 %}
+            {% for seller in seller_list %}
+            <div class="col-md-3 col-sm-3">
+                <div class="card">
+                    <div class="card-header">
+                        <img src="{%static 'seller_list/images/bg_img.jpg' %}" class="card_img" alt="">
+                        <h6 class="text-center">{{seller.seller_id.name}}</h6>
+                        <p class="text-center" style="font-size: 12px;"><i class="fas fa-map-marked-alt"></i> {{seller.sellerStateFullName}}, {{seller.sellerCountryFullName}}</p>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title text-center">
+                            <h5>
+                                <a href="{%url 'inpersonServiceSellerList' pk=seller.pk %}">{{seller.service_title}}</a>
+                            </h5>
+                        </div>
+                        <p class="text-center">Jobs Completed: 23 </p>
+                        <p class="text-center"><i class="fas fa-star"></i> 5.0</p>
+                        <p class="text-center">From: $5</p>
+                    </div>
+                    <a href="{%url 'inpersonServiceSellerDetails' pk=seller.pk %}" type="button" id="details_btn" class="card-footer text-center">View Details</a>
+<!--                    <a href="" type="button" id="details_btn" class="card-footer text-center">View Details</a>-->
+                </div>
+            </div>
+            {% endfor %}
+            {% else %}
+            <h3 class="text-warning" style="margin-left:27%;">Sorry! No Registered Seller Found For This Service!!</h3>
+            {% endif %}
+        </div>
+
+    </div>
+
+    <hr>
+    {% endblock %}
+
+<!--<br><br><br><br><br>-->
+
+
+<!-- footer block for seller list -->
+{% block footer_js_link %}
+ <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" crossorigin="anonymous"></script>
+{% endblock %}

@@ -1,0 +1,86 @@
+{% extends 'seller_admin/base.html' %}
+{% load static %}
+
+{% block page_content %}
+ <!-- Page content -->
+<div id="page-content">
+                        <!-- Forms General Header -->
+                        <div class="content-header">
+                            <div class="header-section">
+                                <h1>
+                                    <i class="gi gi-notes_2"></i>Profile Setting<br><small>Add or Change your profile infor here!</small>
+                                </h1>
+                            </div>
+                        </div>
+                        <ul class="breadcrumb breadcrumb-top">
+                            <li>Profile</li>
+                            <li><a href="">Setting</a></li>
+                        </ul>
+
+<!--    Change profile pic here-->
+    <div class="row">
+                            <div class="col-md-12">
+                                <!-- Basic Form Elements Block -->
+                                <div class="block">
+                                    <!-- Basic Form Elements Title -->
+                                    <div class="block-title">
+                                        <h2><strong>Change Your</strong> Profile Picture!</h2>
+                                    </div>
+                                    <!-- END Form Elements Title -->
+
+                                    <!--Django message Framewor starts -->
+                                    {% if messages %}
+                                    <ul class="messages">
+                                        {% for message in messages %}
+                                        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                                        {% endfor %}
+                                    </ul>
+                                    {% endif %}
+                                    <!--Django message Framewor starts -->
+
+                                    <!-- Basic Form Elements Content -->
+                                    <form action="{% url 'sellerAdminProfileSetting' %}" method="post" enctype="multipart/form-data" class="form-horizontal form-bordered">
+                                        {% csrf_token %}
+                                        <div class="form-group">
+                                            <label class="col-md-3 control-label" for="example-file-input">Upload Image</label>
+                                            <div class="col-md-5">
+                                                <input type="file" id="upload_profile_img" name="upload_profile_img" onchange="previewImg(this);">
+                                            </div>
+                                            <div class="col-md-4">
+                                                <img src="{%static 'seller_admin/img/placeholders/avatars/avatar2.jpg' %}" id="profile_img_view" alt="" style="width:40%;height:130px;border-radius:50%;">
+                                            </div>
+                                        </div>
+
+<!--                                            script for pre-viewing profile image while upload-->
+                                            <script>
+                                                function previewImg(input){
+                                                    var file = $("#upload_profile_img").get(0).files[0];
+
+                                                    if(file){
+                                                        var reader = new FileReader();
+
+                                                        reader.onload = function(){
+                                                            $("#profile_img_view").attr("src", reader.result);
+                                                        }
+
+                                                        reader.readAsDataURL(file);
+                                                    }
+                                                }
+                                            </script>
+<!--                                            ends script here-->
+                                        <div class="form-group">
+                                            <div class="col-md-9 col-md-offset-3">
+                                                <button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-angle-right"></i> Change</button>
+                                            </div>
+                                        </div>
+                                    </form>
+
+                                    <!-- END Basic Form Elements Content -->
+                                </div>
+                                <!-- END Basic Form Elements Block -->
+                            </div>
+                        </div>
+                        <!-- END Forms General Header -->
+                    </div>
+<!-- END Page Content -->
+{% endblock %}

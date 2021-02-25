@@ -1,0 +1,94 @@
+{% extends 'front_service/online_service_categories.html' %}
+{% load static %}
+
+
+{% block service_categories %}
+<!--Body Content-->
+<div id="page-content">
+    	<!--Home slider-->
+<!--    	<div class="slideshow slideshow-wrapper pb-section">-->
+<!--        	<div class="home-slideshow">-->
+<!--            	<div class="slide">-->
+<!--                	<div class="blur-up lazyload">-->
+<!--                        <img class="blur-up lazyload desktop-show" data-src="{% static 'front_end/assets/images/slideshow-banners/home13-auto-parts-bnr1.jpg' %}" src="{% static 'front_end/assets/images/slideshow-banners/home13-auto-parts-bnr1.jpg' %}" alt="The Perfect Theme for Your Auto Parts Business" title="The Perfect Theme for Your Auto Parts Business" />-->
+<!--                        <img class="blur-up lazyload mobile-show" data-src="{% static 'front_end/assets/images/slideshow-banners/home13-auto-parts-bnr1-mobile.jpg' %}" src="{% static 'front_end/assets/images/slideshow-banners/home13-auto-parts-bnr1-mobile.jpg' %}" alt="The Perfect Theme for Your Auto Parts Business" title="The Perfect Theme for Your Auto Parts Business" />-->
+<!--                        <div class="slideshow__text-wrap slideshow__overlay classic bottom">-->
+<!--                            <div class="slideshow__text-content bottom">-->
+<!--                            	<div class="container">-->
+<!--                                    <div class="wrap-caption center">-->
+<!--                                        <h2 class="h1 mega-title slideshow__title">The Perfect Template for Your Auto Parts Business</h2>-->
+<!--                                        <span class="mega-subtitle slideshow__subtitle">Build the perfect Store with Belle for auto parts stores</span>-->
+<!--                                        <span class="btn">Purchase now</span>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+        <!--End Home slider-->
+
+        <!--Popular Categories-->
+        <div class="section">
+        	<div class="container">
+            	<div class="row">
+                	<div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                    	<div class="section-header text-center">
+                            <h2 class="h2">Our Available Online Service Categories</h2>
+                            <p>Choose your necessary service...</p>
+                        </div>
+                    </div>
+                </div>
+<!--                categories-item-->
+                <div class="categories-list-items">
+
+                    <div class="row">
+                        {% for x in cats_page_obj %}
+                        <div class="col-md-4">
+                            <div class="">
+                                <a href="{%url 'serviceSubcat' pk=x.pk %}" class="thumb"><img class="primary blur-up lazyload" data-src="{{x.service_image.url}}" src="{{x.service_image.url}}" style="width:100%;height:200px;border-radius:10px;" alt="{{x.service_name}}" title="{{x.service_name}}"></a>
+                                <p></p>
+                                <h2><a href="{%url 'serviceSubcat' pk=x.pk %}">{{x.service_name}} </a></h2>
+                                <a href="{%url 'serviceSubcat' pk=x.pk %}" class="btn no-border">View Details</a>
+                                <br><br><br>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+
+                </div>
+
+
+                <!--                pagination starts   -->
+                {% if cats_page_obj.has_other_pages %}
+                <ul class="paginate" style="margin-left:40%;">
+                    {% if cats_page_obj.has_previous %}
+                    <a href="?page={{ cats_page_obj.previous_page_number }}"><button type="button">&laquo;</button></a>
+                    {% else %}
+                   <span><button type="button">&laquo;</button></span>
+                    {% endif %}
+                    {% for i in cats_page_obj.paginator.page_range %}
+                    {% if cats_page_obj.number == i %}
+                    <span><button type="button" class="active">{{ i }}</button> <span class="sr-only">(current)</span></span>
+                    {% else %}
+                   <a href="?page={{ i }}"><button type="button">{{ i }}</button></a>
+                    {% endif %}
+                    {% endfor %}
+                    {% if cats_page_obj.has_next %}
+                    <a href="?page={{ cats_page_obj.next_page_number }}"><button type="button">&raquo;</button></a>
+                    {% else %}
+                  <span><button type="button">&raquo;</button></span>
+                    {% endif %}
+                </ul>
+                {% endif %}
+<!--                pagination end-->
+
+
+            </div>
+        </div>
+        <!--End Popular Categories-->
+
+    </div>
+<!--End Body Content-->
+{% endblock service_categories %}

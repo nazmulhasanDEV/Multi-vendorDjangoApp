@@ -1,0 +1,108 @@
+{% extends 'front_end/base.html' %}
+{% load static %}
+
+{% block main_block %}
+<br><br><br><br>
+<!--Body Content-->
+
+    <div id="page-content">
+        <br><br><br>
+        <div class="container-fluid">
+        	<div class="row">
+            	<!--Sidebar-->
+            	<div class="col-12 col-sm-12 col-md-3 col-lg-2 sidebar filterbar">
+                	<div class="closeFilter d-block d-md-none d-lg-none"><i class="icon icon anm anm-times-l"></i></div>
+                	<div class="sidebar_tags">
+                    	<!--Categories-->
+                    	<div class="sidebar_widget categories filter-widget">
+                            <div class="widget-title"><h2>Categories</h2></div>
+                            <div class="widget-content">
+                                <ul class="sidebar_categories">
+                                    {% for cat in inperson_service_cats %}
+                                    <li class="lvl-1"><a href="{% url 'inpersonServiceSubcat' pk=cat.pk %}" class="site-nav"><h3 style="color:gray;">{{cat.name}}</h3></a></li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <!--End Sidebar-->
+                <!--Main Content-->
+                <div class="col-12 col-sm-12 col-md-9 col-lg-10 main-col shop-grid-7">
+                	<div class="productList">
+<!--                      {% block service_categories %}-->
+
+                        <!--Popular Categories-->
+                          <div class="section">
+        	<div class="container">
+            	<div class="row">
+                	<div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                    	<div class="section-header text-center">
+                            <h2 class="h2">Our In Person Services</h2>
+                            <p>Choose your necessary service...</p>
+                        </div>
+                    </div>
+                </div>
+<!--                categories-item-->
+                <div class="categories-list-items">
+
+                    <div class="row">
+                        {% for x in page_obj %}
+                        <div class="col-md-4">
+                            <div class="">
+                                <a href="{%url 'inpersonServiceSubcat' pk=x.pk %}" class="thumb"><img class="primary blur-up lazyload" data-src="{{x.img.url}}" src="{{x.img.url}}" style="width:100%;height:200px;border-radius:10px;" alt="{{x.service_name}}" title="{{x.service_name}}"></a>
+                                <p></p>
+                                <h2><a href="{%url 'inpersonServiceSubcat' pk=x.pk %}">{{x.name}} </a></h2>
+                                <a href="{%url 'inpersonServiceSubcat' pk=x.pk %}" class="btn no-border">View Details</a>
+                                <br><br><br>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+
+                </div>
+
+<!--                pagination part -->
+                {% if page_obj.has_other_pages %}
+                <ul class="paginate" style="margin-left:40%;">
+                    {% if page_obj.has_previous %}
+                    <a href="?page={{ page_obj.previous_page_number }}"><button type="button">&laquo;</button></a>
+                    {% else %}
+                   <span><button type="button">&laquo;</button></span>
+                    {% endif %}
+                    {% for i in page_obj.paginator.page_range %}
+                    {% if page_obj.number == i %}
+                    <span><button type="button" class="active">{{ i }}</button> <span class="sr-only">(current)</span></span>
+                    {% else %}
+                   <a href="?page={{ i }}"><button type="button">{{ i }}</button></a>
+                    {% endif %}
+                    {% endfor %}
+                    {% if page_obj.has_next %}
+                    <a href="?page={{ page_obj.next_page_number }}"><button type="button">&raquo;</button></a>
+                    {% else %}
+                  <span><button type="button">&raquo;</button></span>
+                    {% endif %}
+                </ul>
+                {% endif %}
+<!--                end pagination part-->
+
+            </div>
+        </div>
+                        <!--End Popular Categories-->
+
+<!--                      {% endblock service_categories %}-->
+                </div>
+                <!--End Main Content-->
+            </div>
+        </div>
+
+    </div>
+
+    <!--End Body Content-->
+
+{% endblock main_block %}
+
+
+
+

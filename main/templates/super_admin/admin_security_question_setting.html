@@ -1,0 +1,110 @@
+{% extends 'super_admin/base.html' %}
+{% load static %}
+
+{% block page_content %}
+<div class="main-panel">
+    <div class="content-wrapper">
+
+         <!--                  Django message frameword -->
+                        {% if messages %}
+                        <ul class="messages">
+                            {% for message in messages %}
+                            <h4{% if message.tags %} class="text-{{ message.tags }}"{% endif %}>{{ message }}</h4>
+                            {% endfor %}
+                        </ul>
+                        {% endif %}
+<!--        ends django part -->
+
+        <!--            add security questions and answer   -->
+        <div class="row">
+            <div class="col-12 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <h3 class="card-title"><b>Add your security question and answer!</b></h3>
+                        <p class="card-description">
+                            Add your security question and answer which will help you to specifically identify you!
+                        </p>
+
+                        <form class="forms-sample" action="{%url 'superAdminSecurityQuestionSetting' %}" method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="row">
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <select class="form-control" name="security_question" class="form-control" id="" data-placeholder="Choose security question" required>
+                                            {% for question in security_questions %}
+                                            <option value="{{question.pk}}">{{question.question}}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" id="faq_question" name="answer"
+                                               placeholder="Write your answer..." required>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <button type="submit" class="btn btn-primary mr-2">Add Answer</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+<!--             end security question part -->
+
+<!--        change password part -->
+         <div class="row">
+            <div class="col-12 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <h3 class="card-title"><b>Update your security question and answer!</b></h3>
+                        <p class="card-description">
+                            Update your security info!
+                        </p>
+                        <form class="forms-sample" action="{%url 'superAdminSecurityQuestionSetting' %}" method="post"
+                              enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="row">
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <select class="form-control" name="update_security_question" class="form-control" id="update_security_question" disabled>
+                                            <option value="{{added_security_question.pk}}">{{added_security_question.user_question}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" id="update_question_answer" name="update_question_answer"
+                                               placeholder="Write your answer..." required>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <button type="submit" class="btn btn-primary mr-2">Update Answer</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+<!--        end change password -->
+
+    </div>
+    <!-- content-wrapper ends -->
+    <!-- partial:../../partials/_footer.html -->
+    <footer class="footer">
+        <div class="d-sm-flex justify-content-center justify-content-sm-between">
+            <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2018 <a
+                    href="https://www.urbanui.com/" target="_blank">Urbanui</a>. All rights reserved.</span>
+            <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Hand-crafted & made with <i
+                    class="far fa-heart text-danger"></i></span>
+        </div>
+    </footer>
+    <!-- partial -->
+</div>
+{% endblock %}
+

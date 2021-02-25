@@ -1,0 +1,84 @@
+{% extends 'front_end/base.html' %}
+{% load static %}
+
+{% block main_block %}
+<br><br><br><br>
+<div id="page-content">
+    	<!--Page Title-->
+    	<div class="page section-header text-center">
+			<div class="page-title">
+        		<div class="wrapper"><h1 class="page-width">Create an Account</h1></div>
+      		</div>
+		</div>
+        <!--End Page Title-->
+
+        <div class="container">
+        	<div class="row">
+                <div class="col-12 col-sm-12 col-md-6 col-lg-6 main-col offset-md-3">
+                	<div class="mb-4">
+
+                        <!--                  Django message frameword -->
+                            {% if messages %}
+                              <ul class="messages">
+                              {% for message in messages %}
+                              <h5{% if message.tags %} class="text-{{ message.tags }}"{% endif %}>{{ message }}</h5>
+                              {% endfor %}
+                              </ul>
+						   {% endif %}
+
+                       <form  action="{%url 'createFrontUserAccount' %}" method="post" enctype="multipart/form-data" id="CustomerLoginForm"  class="contact-form">
+                           {% csrf_token %}
+                          <div class="row">
+                              <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                                <div class="form-group">
+                                    <label for="customer_fistname">First Name</label>
+                                    <input type="text" name="customer_fistname" placeholder="First Name" id="customer_fistname" autofocus="" required>
+                                </div>
+                               </div>
+                              <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                                <div class="form-group">
+                                    <label for="customer_lastname">Last Name</label>
+                                    <input type="text" name="customer_lastname" placeholder="Last Name" id="customer_lastname" required>
+                                </div>
+                               </div>
+                               <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                                <div class="form-group">
+                                    <label for="LastName">Username</label>
+                                    <input type="text" name="customer_username" placeholder="Username" id="customer_username" required>
+                                </div>
+                               </div>
+                            <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                                <div class="form-group">
+                                    <label for="customer_email">Email</label>
+                                    <input type="email" name="customer_email" placeholder="Email" id="customer_email" class="" autocorrect="off" autocapitalize="off" autofocus="" required>
+                                </div>
+                            </div>
+                            <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                                <div class="form-group">
+                                    <label for="CustomerPassword">Password</label>
+                                    <input type="password" value="" name="customer_password" placeholder="Password" id="customer_password" class="" required>
+                                </div>
+                            </div>
+                            <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                                <div class="form-group">
+                                    <label for="customer_confirm_password">Confirm Password</label>
+                                    <input type="password" value="" name="customer_confirm_password" placeholder="Confirm Password" id="customer_confirm_password" class="" required>
+                                </div>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="text-center col-12 col-sm-12 col-md-12 col-lg-12">
+                                <input type="submit" class="btn mb-3" value="Create">
+                            </div>
+                         </div>
+                     </form>
+
+                        <p class="text-center">Already Have an Account?<strong><a href="/login/front/user/">Login</a></strong></p>
+
+                    </div>
+               	</div>
+            </div>
+        </div>
+
+    </div>
+{% endblock %}

@@ -1,0 +1,101 @@
+{% extends 'front_end/product_page.html' %}
+{% load static %}
+
+{% block customer_job_post_css %}
+ <!--    stylsheet link-->
+    <link rel="stylesheet" type="text/css" href="{% static 'front_end/job_post/css/index.css' %}">
+
+    <!--    boostrap link-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" crossorigin="anonymous">
+
+    {% endblock %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Post Your Job</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+</head>
+
+<body>
+
+
+    <div class="container" id="main_content">
+
+        <div class="row">
+
+            <div class="col-md-3"></div>
+            <div class="col-md-6" id="main_fontent">
+
+               <h3 class="text-center" id="title">Post Your Job To Get The Right Seller!</h3>
+
+                <form action="" method="post" enctype="multipart/form-data" id="main_form">
+
+                    <div class="form-group">
+                        <label for="email"><p id="label">Describe your service:</p></label>
+                        <textarea name="" id="" class="form-control" cols="30" rows="5" placeholder="Describe your service"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email"><p id="label">Attach Files:</p></label>
+                        <input type="file" class="form-control" id="attach_file">
+
+                    </div>
+
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-6">
+                            <label for="service"><p id="label">Choose Service Type:</p></label>
+                        <select name="" class="form-control" id="">
+                            <option value="">In Person Service</option>
+                            <option value="">Online Service</option>
+                        </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="pwd"><p id="label">Choose Service Category:</p></label>
+                        <select name="" class="form-control" id="">
+                            <option value="">option1</option>
+                            <option value="">option1</option>
+                        </select>
+                        </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-6">
+                            <label for=""><p id="label">Specify Budget:</p></label>
+                        <input type="number" class="form-control" placeholder="Specify Project Budget">
+                        </div>
+                        <div class="col-md-6">
+                        <label for=""><p id="label">Choose Delivery Time:</p></label>
+                        <input type="text" class="form-control" value="/Days" placeholder="/Days">
+                        </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <button type="submit" id="submit" class="btn">Submit</button>
+                    </div>
+                </form>
+                <br><br>
+
+            </div>
+            <div class="col-md-3"></div>
+
+        </div>
+    </div>
+
+    <br><br><br><br>
+
+
+    <!--    bootstrap link-->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" crossorigin="anonymous"></script>
+</body>
+
+</html>

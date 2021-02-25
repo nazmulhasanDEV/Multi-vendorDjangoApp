@@ -1,0 +1,39 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&display=swap');
+
+#login_option_btn_modify_1{
+width: 350px;
+height: 40px;
+background-color:#231F20;
+color: white;
+font-size: 16px;
+position: relative;
+left: 28%;
+border-radius: 8px;
+border: none;
+outline: none;
+}
+
+#login_option_btn_modify_2{
+width: 350px;
+height: 40px;
+background-color: #231F20;
+color: white;
+font-size: 16px;
+position: relative;
+margin-top: 25px;
+left: 28%;
+border-radius: 8px;
+border: none;
+outline: none;
+}
+
+#login_option_btn_modify_1 a{
+text-decoration: none;
+color: white;
+font-family: 'Open Sans', sans-serif;
+}
+#login_option_btn_modify_2 a{
+text-decoration: none;
+color: white;
+font-family: 'Open Sans', sans-serif;
+}

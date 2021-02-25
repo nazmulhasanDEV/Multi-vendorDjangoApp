@@ -1,0 +1,1066 @@
+{% extends 'front_end/base.html' %}
+{% load static %}
+
+
+{% block main_block %}
+<br><br><br><br>
+<!--Body Content-->
+<div id="page-content">
+    <!--MainContent-->
+    <div id="MainContent" class="main-content" role="main">
+
+        <div id="ProductSection-product-template" class="product-template__container prstyle1 container">
+            <!-- Tabs-->
+            <div class="tabs-listing">
+                <ul class="product-tabs">
+                    <li rel="tab1"><a class="tablink">Service Details</a></li>
+                    <li rel="tab2"><a class="tablink">Job History</a></li>
+                    <li rel="job_portfolio"><a class="tablink">Portfolio</a></li>
+                    <li rel="seller_profile"><a class="tablink">Seller Profile</a></li>
+                </ul>
+                <div class="tab-container">
+
+                    <div id="tab1" class="tab-content">
+                        <div class="product-description rte">
+                            <h2>{{inperson_seller_details.service_title}}</h2>
+                            <div class="seller-service-description">
+                                <p class="breadcumb">
+                                {{inperson_seller_details.service_description|safe}}
+                            </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="tab2" class="tab-content">
+                        <div id="shopify-product-reviews">
+                            <div class="spr-container">
+                                <div class="spr-header clearfix">
+                                    <h3>Jobs completed:</h3>
+                                    <h3>Total Earned:</h3>
+                                </div>
+                                <div class="spr-content">
+                                    <div class="spr-reviews">
+                                        <h2>Client Reviews</h2>
+                                        <div class="spr-review">
+                                            <div class="spr-review-header">
+                                                <span class="product-review spr-starratings spr-review-header-starratings"><span
+                                                        class="reviewLink"><i class="fa fa-star"></i><i
+                                                        class="font-13 fa fa-star"></i><i
+                                                        class="font-13 fa fa-star"></i><i
+                                                        class="font-13 fa fa-star"></i><i
+                                                        class="font-13 fa fa-star"></i></span></span>
+                                                <h3 class="spr-review-header-title">Lorem ipsum dolor sit amet</h3>
+                                                <span class="spr-review-header-byline"><strong>dsacc</strong> on <strong>Apr 09, 2019</strong></span>
+                                            </div>
+                                            <div class="spr-review-content">
+                                                <p class="spr-review-content-body">Lorem ipsum dolor sit amet,
+                                                    consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                                                    labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+                                                    exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                                                    consequat.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="job_portfolio" class="tab-content">
+
+                        <div class="categories-list-items">
+
+                            <div class="row">
+                                {% for img in seller_portfolio_imgs %}
+                                <div class="col-md-3">
+                                    <div class="">
+                                        <a href="#" class="thumb">
+                                            <img class="primary blur-up lazyload" data-src="{{img.portfolio_img.url}}" src="{{img.portfolio_img.url}}" style="width:100%;height:200px;border-radius:10px;" alt="" title="">
+                                        </a>
+<!--                                        <p></p>-->
+                                        <h2 class="text-center"><a href="#">{{img.img_title}}</a></h2>
+                                        <br><br><br>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div id="seller_profile" class="tab-content">
+
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <center>
+                                        <img src="{{seller_profile_pic.user_profile_img}}" style="width:150px; height: 150px; border-radius: 50%;" alt="">
+                                    </center>
+                                    <h5 class="text-center">{{inperson_seller_details.seller_id.name}}</h5>
+                                    <p class="text-center">{{inperson_seller_details.sellerStateFullName}}, {{inperson_seller_details.sellerCountryFullName}}</p>
+                                    <a href="#" id="contact_me_inperson_seller" onclick="showMsgBox();"><button type="button" class="hire_me_inperson_seller" style="width:150px;height:40px;background:black;color:white;cursor:pointer;">Contact Me</button></a>
+                                </div>
+                                <div class="col-md-8">
+
+                                    <div class="row">
+                                        <div class="breadcrumb" style="width: 100%;">
+                                            <h3>Description About Seller</h3>
+                                        </div>
+                                        <div>
+                                            <p>{{seller_portfolio_info.description_about_seller}}</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <br><br>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="breadcrumb" style="width: 100%;">
+                                            <h3>Skills</h3>
+                                        </div>
+                                        <p>{{seller_portfolio_info.skills_of_seller}}</p>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <br><br>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+            <!--End Product Tabs-->
+
+            <hr>
+
+            <!--Related service Slider-->
+            <div class="related-product grid-products">
+                <header class="section-header">
+                    <h2 class="section-header__title text-center h2"><span>Related Products</span></h2>
+                    <p class="sub-heading">You can stop autoplay, increase/decrease aniamtion speed and number of grid
+                        to show and products from store admin.</p>
+                </header>
+                <div class="productPageSlider">
+                    <div class="col-12 item">
+                        <!-- start product image -->
+                        <div class="product-image">
+                            <!-- start product image -->
+                            <a href="#">
+                                <!-- image -->
+                                <img class="primary blur-up lazyload"
+                                     data-src="{% static 'front_end/assets/images/product-images/product-image1.jpg' %}"
+                                     src="{% static 'front_end/assets/images/product-images/product-image1.jpg' %}"
+                                     alt="image" title="product">
+                                <!-- End image -->
+                                <!-- Hover image -->
+                                <img class="hover blur-up lazyload"
+                                     data-src="{% static 'front_end/assets/images/product-images/product-image1.jpg' %}"
+                                     src="{% static 'front_end/assets/images/product-images/product-image1.jpg' %}"
+                                     alt="image" title="product">
+                                <!-- End hover image -->
+                                <!-- product label -->
+                                <div class="product-labels rectangular"><span class="lbl on-sale">-16%</span> <span
+                                        class="lbl pr-label1">new</span></div>
+                                <!-- End product label -->
+                            </a>
+                            <!-- end product image -->
+
+                            <!-- Start product button -->
+                            <form class="variants add" action="#" onclick="window.location.href='cart.html'"
+                                  method="post">
+                                <button class="btn btn-addto-cart" type="button" tabindex="0">Select Options</button>
+                            </form>
+                            <div class="button-set">
+                                <a href="#" title="Quick View" class="quick-view" tabindex="0">
+                                    <i class="icon anm anm-search-plus-r"></i>
+                                </a>
+                                <div class="wishlist-btn">
+                                    <a class="wishlist add-to-wishlist" href="wishlist.html">
+                                        <i class="icon anm anm-heart-l"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <!-- end product button -->
+                        </div>
+                        <!-- end product image -->
+                        <!--start product details -->
+                        <div class="product-details text-center">
+                            <!-- product name -->
+                            <div class="product-name">
+                                <a href="#">Edna Dress</a>
+                            </div>
+                            <!-- End product name -->
+                            <!-- product price -->
+                            <div class="product-price">
+                                <span class="old-price">$500.00</span>
+                                <span class="price">$600.00</span>
+                            </div>
+                            <!-- End product price -->
+
+                            <div class="product-review">
+                                <i class="font-13 fa fa-star"></i>
+                                <i class="font-13 fa fa-star"></i>
+                                <i class="font-13 fa fa-star"></i>
+                                <i class="font-13 fa fa-star-o"></i>
+                                <i class="font-13 fa fa-star-o"></i>
+                            </div>
+                            <!-- Variant -->
+                            <ul class="swatches">
+                                <li class="swatch medium rounded"><img
+                                        src="{% static 'front_end/assets/images/product-images/product-image1.jpg' %}"
+                                        alt="image"/></li>
+                                <li class="swatch medium rounded"><img
+                                        src="{% static 'front_end/assets/images/product-images/product-image1.jpg' %}"
+                                        alt="image"/></li>
+                                <li class="swatch medium rounded"><img
+                                        src="{% static 'front_end/assets/images/product-images/product-image1.jpg' %}"
+                                        alt="image"/></li>
+                                <li class="swatch medium rounded"><img
+                                        src="{% static 'front_end/assets/images/product-images/product-image1.jpg' %}"
+                                        alt="image"/></li>
+                                <li class="swatch medium rounded"><img
+                                        src="{% static 'front_end/assets/images/product-images/product-image1.jpg' %}"
+                                        alt="image"/></li>
+                                <li class="swatch medium rounded"><img
+                                        src="{% static 'front_end/assets/images/product-images/product-image1.jpg' %}"
+                                        alt="image"/></li>
+                            </ul>
+                            <!-- End Variant -->
+                        </div>
+                        <!-- End product details -->
+                    </div>
+                    <div class="col-12 item">
+                        <!-- start product image -->
+                        <div class="product-image">
+                            <!-- start product image -->
+                            <a href="#">
+                                <!-- image -->
+                                <img class="primary blur-up lazyload"
+                                     data-src="{% static 'front_end/assets/images/product-images/product-image1.jpg' %}"
+                                     src="{% static 'front_end/assets/images/product-images/product-image1.jpg' %}"
+                                     alt="image" title="product">
+                                <!-- End image -->
+                                <!-- Hover image -->
+                                <img class="hover blur-up lazyload"
+                                     data-src="{% static 'front_end/assets/images/product-images/product-image1.jpg' %}"
+                                     src="{% static 'front_end/assets/images/product-images/product-image1.jpg' %}"
+                                     alt="image" title="product">
+                                <!-- End hover image -->
+                            </a>
+                            <!-- end product image -->
+
+                            <!-- Start product button -->
+                            <form class="variants add" action="#" onclick="window.location.href='cart.html'"
+                                  method="post">
+                                <button class="btn btn-addto-cart" type="button" tabindex="0">Select Options</button>
+                            </form>
+                            <div class="button-set">
+                                <a href="#" title="Quick View" class="quick-view" tabindex="0">
+                                    <i class="icon anm anm-search-plus-r"></i>
+                                </a>
+                                <div class="wishlist-btn">
+                                    <a class="wishlist add-to-wishlist" href="wishlist.html">
+                                        <i class="icon anm anm-heart-l"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <!-- end product button -->
+                        </div>
+                        <!-- end product image -->
+
+                        <!--start product details -->
+                        <div class="product-details text-center">
+                            <!-- product name -->
+                            <div class="product-name">
+                                <a href="#">Elastic Waist Dress</a>
+                            </div>
+                            <!-- End product name -->
+                            <!-- product price -->
+                            <div class="product-price">
+                                <span class="price">$748.00</span>
+                            </div>
+                            <!-- End product price -->
+                            <div class="product-review">
+                                <i class="font-13 fa fa-star"></i>
+                                <i class="font-13 fa fa-star"></i>
+                                <i class="font-13 fa fa-star"></i>
+                                <i class="font-13 fa fa-star"></i>
+                                <i class="font-13 fa fa-star"></i>
+                            </div>
+                            <!-- Variant -->
+                            <ul class="swatches">
+                                <li class="swatch medium rounded"><img
+                                        src="{% static 'front_end/assets/images/product-images/product-image1.jpg' %}"
+                                        alt="image"/></li>
+                                <li class="swatch medium rounded"><img
+                                        src="{% static 'front_end/assets/images/product-images/product-image1.jpg' %}"
+                                        alt="image"/></li>
+                                <li class="swatch medium rounded"><img
+                                        src="{% static 'front_end/assets/images/product-images/product-image1.jpg' %}"
+                                        alt="image"/></li>
+                                <li class="swatch medium rounded"><img
+                                        src="{% static 'front_end/assets/images/product-images/product-image1.jpg' %}"
+                                        alt="image"/></li>
+                            </ul>
+                            <!-- End Variant -->
+                        </div>
+                        <!-- End product details -->
+                    </div>
+                    <div class="col-12 item">
+                        <!-- start product image -->
+                        <div class="product-image">
+                            <!-- start product image -->
+                            <a href="#">
+                                <!-- image -->
+                                <img class="primary blur-up lazyload"
+                                     data-src="{% static 'front_end/assets/images/product-images/product-image1.jpg' %}"
+                                     src="{% static 'front_end/assets/images/product-images/product-image1.jpg' %}"
+                                     alt="image" title="product">
+                                <!-- End image -->
+                                <!-- Hover image -->
+                                <img class="hover blur-up lazyload"
+                                     data-src="{% static 'front_end/assets/images/product-images/product-image1.jpg' %}"
+                                     src="{% static 'front_end/assets/images/product-images/product-image1.jpg' %}"
+                                     alt="image" title="product">
+                                <!-- End hover image -->
+                                <!-- product label -->
+                                <div class="product-labels rectangular"><span class="lbl on-sale">-16%</span> <span
+                                        class="lbl pr-label1">new</span></div>
+                                <!-- End product label -->
+                            </a>
+                            <!-- end product image -->
+
+                            <!-- Start product button -->
+                            <form class="variants add" action="#" onclick="window.location.href='cart.html'"
+                                  method="post">
+                                <button class="btn btn-addto-cart" type="button" tabindex="0">Select Options</button>
+                            </form>
+                            <div class="button-set">
+                                <a href="#" title="Quick View" class="quick-view" tabindex="0">
+                                    <i class="icon anm anm-search-plus-r"></i>
+                                </a>
+                                <div class="wishlist-btn">
+                                    <a class="wishlist add-to-wishlist" href="wishlist.html">
+                                        <i class="icon anm anm-heart-l"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <!-- end product button -->
+                        </div>
+                        <!-- end product image -->
+                        <!--start product details -->
+                        <div class="product-details text-center">
+                            <!-- product name -->
+                            <div class="product-name">
+                                <a href="#">Edna Dress</a>
+                            </div>
+                            <!-- End product name -->
+                            <!-- product price -->
+                            <div class="product-price">
+                                <span class="old-price">$500.00</span>
+                                <span class="price">$600.00</span>
+                            </div>
+                            <!-- End product price -->
+
+                            <div class="product-review">
+                                <i class="font-13 fa fa-star"></i>
+                                <i class="font-13 fa fa-star"></i>
+                                <i class="font-13 fa fa-star"></i>
+                                <i class="font-13 fa fa-star-o"></i>
+                                <i class="font-13 fa fa-star-o"></i>
+                            </div>
+                            <!-- Variant -->
+                            <ul class="swatches">
+                                <li class="swatch medium rounded"><img
+                                        src="{% static 'front_end/assets/images/product-images/product-image1.jpg' %}"
+                                        alt="image"/></li>
+                                <li class="swatch medium rounded"><img
+                                        src="{% static 'front_end/assets/images/product-images/product-image1.jpg' %}"
+                                        alt="image"/></li>
+                                <li class="swatch medium rounded"><img
+                                        src="{% static 'front_end/assets/images/product-images/product-image1.jpg' %}"
+                                        alt="image"/></li>
+                                <li class="swatch medium rounded"><img
+                                        src="{% static 'front_end/assets/images/product-images/product-image1.jpg' %}"
+                                        alt="image"/></li>
+                                <li class="swatch medium rounded"><img
+                                        src="{% static 'front_end/assets/images/product-images/product-image1.jpg' %}"
+                                        alt="image"/></li>
+                                <li class="swatch medium rounded"><img
+                                        src="{% static 'front_end/assets/images/product-images/product-image1.jpg' %}"
+                                        alt="image"/></li>
+                            </ul>
+                            <!-- End Variant -->
+                        </div>
+                        <!-- End product details -->
+                    </div>
+                    <div class="col-12 item">
+                        <!-- start product image -->
+                        <div class="product-image">
+                            <!-- start product image -->
+                            <a href="#">
+                                <!-- image -->
+                                <img class="primary blur-up lazyload"
+                                     data-src="{% static 'front_end/assets/images/product-images/product-image1.jpg' %}"
+                                     src="{% static 'front_end/assets/images/product-images/product-image1.jpg' %}"
+                                     alt="image" title="product">
+                                <!-- End image -->
+                                <!-- Hover image -->
+                                <img class="hover blur-up lazyload"
+                                     data-src="{% static 'front_end/assets/images/product-images/product-image1.jpg' %}"
+                                     src="{% static 'front_end/assets/images/product-images/product-image1.jpg' %}"
+                                     alt="image" title="product">
+                                <!-- End hover image -->
+                                <!-- product label -->
+                                <div class="product-labels rectangular"><span class="lbl on-sale">-16%</span> <span
+                                        class="lbl pr-label1">new</span></div>
+                                <!-- End product label -->
+                            </a>
+                            <!-- end product image -->
+
+                            <!-- Start product button -->
+                            <form class="variants add" action="#" onclick="window.location.href='cart.html'"
+                                  method="post">
+                                <button class="btn btn-addto-cart" type="button" tabindex="0">Select Options</button>
+                            </form>
+                            <div class="button-set">
+                                <a href="#" title="Quick View" class="quick-view" tabindex="0">
+                                    <i class="icon anm anm-search-plus-r"></i>
+                                </a>
+                                <div class="wishlist-btn">
+                                    <a class="wishlist add-to-wishlist" href="wishlist.html">
+                                        <i class="icon anm anm-heart-l"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <!-- end product button -->
+                        </div>
+                        <!-- end product image -->
+                        <!--start product details -->
+                        <div class="product-details text-center">
+                            <!-- product name -->
+                            <div class="product-name">
+                                <a href="#">Edna Dress</a>
+                            </div>
+                            <!-- End product name -->
+                            <!-- product price -->
+                            <div class="product-price">
+                                <span class="old-price">$500.00</span>
+                                <span class="price">$600.00</span>
+                            </div>
+                            <!-- End product price -->
+
+                            <div class="product-review">
+                                <i class="font-13 fa fa-star"></i>
+                                <i class="font-13 fa fa-star"></i>
+                                <i class="font-13 fa fa-star"></i>
+                                <i class="font-13 fa fa-star-o"></i>
+                                <i class="font-13 fa fa-star-o"></i>
+                            </div>
+                            <!-- Variant -->
+                            <ul class="swatches">
+                                <li class="swatch medium rounded"><img
+                                        src="{% static 'front_end/assets/images/product-images/product-image1.jpg' %}"
+                                        alt="image"/></li>
+                                <li class="swatch medium rounded"><img
+                                        src="{% static 'front_end/assets/images/product-images/product-image1.jpg' %}"
+                                        alt="image"/></li>
+                                <li class="swatch medium rounded"><img
+                                        src="{% static 'front_end/assets/images/product-images/product-image1.jpg' %}"
+                                        alt="image"/></li>
+                                <li class="swatch medium rounded"><img
+                                        src="{% static 'front_end/assets/images/product-images/product-image1.jpg' %}"
+                                        alt="image"/></li>
+                                <li class="swatch medium rounded"><img
+                                        src="{% static 'front_end/assets/images/product-images/product-image1.jpg' %}"
+                                        alt="image"/></li>
+                                <li class="swatch medium rounded"><img
+                                        src="{% static 'front_end/assets/images/product-images/product-image1.jpg' %}"
+                                        alt="image"/></li>
+                            </ul>
+                            <!-- End Variant -->
+                        </div>
+                        <!-- End product details -->
+                    </div>
+                    <div class="col-12 item">
+                        <!-- start product image -->
+                        <div class="product-image">
+                            <!-- start product image -->
+                            <a href="#">
+                                <!-- image -->
+                                <img class="primary blur-up lazyload"
+                                     data-src="{% static 'front_end/assets/images/product-images/product-image1.jpg' %}"
+                                     src="{% static 'front_end/assets/images/product-images/product-image1.jpg' %}"
+                                     alt="image" title="product">
+                                <!-- End image -->
+                                <!-- Hover image -->
+                                <img class="hover blur-up lazyload"
+                                     data-src="{% static 'front_end/assets/images/product-images/product-image1.jpg' %}"
+                                     src="{% static 'front_end/assets/images/product-images/product-image1.jpg' %}"
+                                     alt="image" title="product">
+                                <!-- End hover image -->
+                                <!-- product label -->
+                                <div class="product-labels rectangular"><span class="lbl on-sale">-16%</span> <span
+                                        class="lbl pr-label1">new</span></div>
+                                <!-- End product label -->
+                            </a>
+                            <!-- end product image -->
+
+                            <!-- Start product button -->
+                            <form class="variants add" action="#" onclick="window.location.href='cart.html'"
+                                  method="post">
+                                <button class="btn btn-addto-cart" type="button" tabindex="0">Select Options</button>
+                            </form>
+                            <div class="button-set">
+                                <a href="#" title="Quick View" class="quick-view" tabindex="0">
+                                    <i class="icon anm anm-search-plus-r"></i>
+                                </a>
+                                <div class="wishlist-btn">
+                                    <a class="wishlist add-to-wishlist" href="wishlist.html">
+                                        <i class="icon anm anm-heart-l"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <!-- end product button -->
+                        </div>
+                        <!-- end product image -->
+                        <!--start product details -->
+                        <div class="product-details text-center">
+                            <!-- product name -->
+                            <div class="product-name">
+                                <a href="#">Edna Dress</a>
+                            </div>
+                            <!-- End product name -->
+                            <!-- product price -->
+                            <div class="product-price">
+                                <span class="old-price">$500.00</span>
+                                <span class="price">$600.00</span>
+                            </div>
+                            <!-- End product price -->
+
+                            <div class="product-review">
+                                <i class="font-13 fa fa-star"></i>
+                                <i class="font-13 fa fa-star"></i>
+                                <i class="font-13 fa fa-star"></i>
+                                <i class="font-13 fa fa-star-o"></i>
+                                <i class="font-13 fa fa-star-o"></i>
+                            </div>
+                            <!-- Variant -->
+                            <ul class="swatches">
+                                <li class="swatch medium rounded"><img
+                                        src="{% static 'front_end/assets/images/product-images/product-image1.jpg' %}"
+                                        alt="image"/></li>
+                                <li class="swatch medium rounded"><img
+                                        src="{% static 'front_end/assets/images/product-images/product-image1.jpg' %}"
+                                        alt="image"/></li>
+                                <li class="swatch medium rounded"><img
+                                        src="{% static 'front_end/assets/images/product-images/product-image1.jpg' %}"
+                                        alt="image"/></li>
+                                <li class="swatch medium rounded"><img
+                                        src="{% static 'front_end/assets/images/product-images/product-image1.jpg' %}"
+                                        alt="image"/></li>
+                                <li class="swatch medium rounded"><img
+                                        src="{% static 'front_end/assets/images/product-images/product-image1.jpg' %}"
+                                        alt="image"/></li>
+                                <li class="swatch medium rounded"><img
+                                        src="{% static 'front_end/assets/images/product-images/product-image1.jpg' %}"
+                                        alt="image"/></li>
+                            </ul>
+                            <!-- End Variant -->
+                        </div>
+                        <!-- End product details -->
+                    </div>
+                    <div class="col-12 item">
+                        <!-- start product image -->
+                        <div class="product-image">
+                            <!-- start product image -->
+                            <a href="#">
+                                <!-- image -->
+                                <img class="primary blur-up lazyload"
+                                     data-src="{% static 'front_end/assets/images/product-images/product-image1.jpg' %}"
+                                     src="{% static 'front_end/assets/images/product-images/product-image1.jpg' %}"
+                                     alt="image" title="product">
+                                <!-- End image -->
+                                <!-- Hover image -->
+                                <img class="hover blur-up lazyload"
+                                     data-src="{% static 'front_end/assets/images/product-images/product-image1.jpg' %}"
+                                     src="{% static 'front_end/assets/images/product-images/product-image1.jpg' %}"
+                                     alt="image" title="product">
+                                <!-- End hover image -->
+                                <!-- product label -->
+                                <div class="product-labels rectangular"><span class="lbl on-sale">-16%</span> <span
+                                        class="lbl pr-label1">new</span></div>
+                                <!-- End product label -->
+                            </a>
+                            <!-- end product image -->
+
+                            <!-- Start product button -->
+                            <form class="variants add" action="#" onclick="window.location.href='cart.html'"
+                                  method="post">
+                                <button class="btn btn-addto-cart" type="button" tabindex="0">Select Options</button>
+                            </form>
+                            <div class="button-set">
+                                <a href="#" title="Quick View" class="quick-view" tabindex="0">
+                                    <i class="icon anm anm-search-plus-r"></i>
+                                </a>
+                                <div class="wishlist-btn">
+                                    <a class="wishlist add-to-wishlist" href="wishlist.html">
+                                        <i class="icon anm anm-heart-l"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <!-- end product button -->
+                        </div>
+                        <!-- end product image -->
+                        <!--start product details -->
+                        <div class="product-details text-center">
+                            <!-- product name -->
+                            <div class="product-name">
+                                <a href="#">Edna Dress</a>
+                            </div>
+                            <!-- End product name -->
+                            <!-- product price -->
+                            <div class="product-price">
+                                <span class="old-price">$500.00</span>
+                                <span class="price">$600.00</span>
+                            </div>
+                            <!-- End product price -->
+
+                            <div class="product-review">
+                                <i class="font-13 fa fa-star"></i>
+                                <i class="font-13 fa fa-star"></i>
+                                <i class="font-13 fa fa-star"></i>
+                                <i class="font-13 fa fa-star-o"></i>
+                                <i class="font-13 fa fa-star-o"></i>
+                            </div>
+                            <!-- Variant -->
+                            <ul class="swatches">
+                                <li class="swatch medium rounded"><img
+                                        src="{% static 'front_end/assets/images/product-images/product-image1.jpg' %}"
+                                        alt="image"/></li>
+                                <li class="swatch medium rounded"><img
+                                        src="{% static 'front_end/assets/images/product-images/product-image1.jpg' %}"
+                                        alt="image"/></li>
+                                <li class="swatch medium rounded"><img
+                                        src="{% static 'front_end/assets/images/product-images/product-image1.jpg' %}"
+                                        alt="image"/></li>
+                                <li class="swatch medium rounded"><img
+                                        src="{% static 'front_end/assets/images/product-images/product-image1.jpg' %}"
+                                        alt="image"/></li>
+                                <li class="swatch medium rounded"><img
+                                        src="{% static 'front_end/assets/images/product-images/product-image1.jpg' %}"
+                                        alt="image"/></li>
+                                <li class="swatch medium rounded"><img
+                                        src="{% static 'front_end/assets/images/product-images/product-image1.jpg' %}"
+                                        alt="image"/></li>
+                            </ul>
+                            <!-- End Variant -->
+                        </div>
+                        <!-- End product details -->
+                    </div>
+                    <div class="col-12 item">
+                        <!-- start product image -->
+                        <div class="product-image">
+                            <!-- start product image -->
+                            <a href="#">
+                                <!-- image -->
+                                <img class="primary blur-up lazyload"
+                                     data-src="{% static 'front_end/assets/images/product-images/product-image1.jpg' %}"
+                                     src="{% static 'front_end/assets/images/product-images/product-image1.jpg' %}"
+                                     alt="image" title="product">
+                                <!-- End image -->
+                                <!-- Hover image -->
+                                <img class="hover blur-up lazyload"
+                                     data-src="{% static 'front_end/assets/images/product-images/product-image1.jpg' %}"
+                                     src="{% static 'front_end/assets/images/product-images/product-image1.jpg' %}"
+                                     alt="image" title="product">
+                                <!-- End hover image -->
+                                <!-- product label -->
+                                <div class="product-labels rectangular"><span class="lbl on-sale">-16%</span> <span
+                                        class="lbl pr-label1">new</span></div>
+                                <!-- End product label -->
+                            </a>
+                            <!-- end product image -->
+
+                            <!-- Start product button -->
+                            <form class="variants add" action="#" onclick="window.location.href='cart.html'"
+                                  method="post">
+                                <button class="btn btn-addto-cart" type="button" tabindex="0">Select Options</button>
+                            </form>
+                            <div class="button-set">
+                                <a href="#" title="Quick View" class="quick-view" tabindex="0">
+                                    <i class="icon anm anm-search-plus-r"></i>
+                                </a>
+                                <div class="wishlist-btn">
+                                    <a class="wishlist add-to-wishlist" href="wishlist.html">
+                                        <i class="icon anm anm-heart-l"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <!-- end product button -->
+                        </div>
+                        <!-- end product image -->
+                        <!--start product details -->
+                        <div class="product-details text-center">
+                            <!-- product name -->
+                            <div class="product-name">
+                                <a href="#">Edna Dress</a>
+                            </div>
+                            <!-- End product name -->
+                            <!-- product price -->
+                            <div class="product-price">
+                                <span class="old-price">$500.00</span>
+                                <span class="price">$600.00</span>
+                            </div>
+                            <!-- End product price -->
+
+                            <div class="product-review">
+                                <i class="font-13 fa fa-star"></i>
+                                <i class="font-13 fa fa-star"></i>
+                                <i class="font-13 fa fa-star"></i>
+                                <i class="font-13 fa fa-star-o"></i>
+                                <i class="font-13 fa fa-star-o"></i>
+                            </div>
+                            <!-- Variant -->
+                            <ul class="swatches">
+                                <li class="swatch medium rounded"><img
+                                        src="{% static 'front_end/assets/images/product-images/product-image1.jpg' %}"
+                                        alt="image"/></li>
+                                <li class="swatch medium rounded"><img
+                                        src="{% static 'front_end/assets/images/product-images/product-image1.jpg' %}"
+                                        alt="image"/></li>
+                                <li class="swatch medium rounded"><img
+                                        src="{% static 'front_end/assets/images/product-images/product-image1.jpg' %}"
+                                        alt="image"/></li>
+                                <li class="swatch medium rounded"><img
+                                        src="{% static 'front_end/assets/images/product-images/product-image1.jpg' %}"
+                                        alt="image"/></li>
+                                <li class="swatch medium rounded"><img
+                                        src="{% static 'front_end/assets/images/product-images/product-image1.jpg' %}"
+                                        alt="image"/></li>
+                                <li class="swatch medium rounded"><img
+                                        src="{% static 'front_end/assets/images/product-images/product-image1.jpg' %}"
+                                        alt="image"/></li>
+                            </ul>
+                            <!-- End Variant -->
+                        </div>
+                        <!-- End product details -->
+                    </div>
+                </div>
+            </div>
+            <!--End Related service Slider-->
+
+            <!--Recently service Slider-->
+            <!--                    <div class="related-product grid-products">-->
+            <!--                            <header class="section-header">-->
+            <!--                                <h2 class="section-header__title text-center h2"><span>Recently Viewed Product</span></h2>-->
+            <!--                                <p class="sub-heading">You can manage this section from store admin as describe in above section</p>-->
+            <!--                            </header>-->
+            <!--                            <div class="productPageSlider">-->
+            <!--                                <div class="col-12 item">-->
+            <!--                                    &lt;!&ndash; start product image &ndash;&gt;-->
+            <!--                                    <div class="product-image">-->
+            <!--                                        &lt;!&ndash; start product image &ndash;&gt;-->
+            <!--                                        <a href="#">-->
+            <!--                                            &lt;!&ndash; image &ndash;&gt;-->
+            <!--                                            <img class="primary blur-up lazyload" data-src="assets/images/product-images/product-image6.jpg" src="assets/images/product-images/product-image6.jpg" alt="image" title="product">-->
+            <!--                                            &lt;!&ndash; End image &ndash;&gt;-->
+            <!--                                            &lt;!&ndash; Hover image &ndash;&gt;-->
+            <!--                                            <img class="hover blur-up lazyload" data-src="assets/images/product-images/product-image6-1.jpg" src="assets/images/product-images/product-image6-1.jpg" alt="image" title="product">-->
+            <!--                                            &lt;!&ndash; End hover image &ndash;&gt;-->
+            <!--                                            &lt;!&ndash; product label &ndash;&gt;-->
+            <!--                                            <div class="product-labels rectangular"><span class="lbl on-sale">-16%</span> <span class="lbl pr-label1">new</span></div>-->
+            <!--                                            &lt;!&ndash; End product label &ndash;&gt;-->
+            <!--                                        </a>-->
+            <!--                                        &lt;!&ndash; end product image &ndash;&gt;-->
+            <!--                                    </div>-->
+            <!--                                    &lt;!&ndash; end product image &ndash;&gt;-->
+
+            <!--                                    &lt;!&ndash;start product details &ndash;&gt;-->
+            <!--                                    <div class="product-details text-center">-->
+            <!--                                        &lt;!&ndash; product name &ndash;&gt;-->
+            <!--                                        <div class="product-name">-->
+            <!--                                            <a href="#">Zipper Jacket</a>-->
+            <!--                                        </div>-->
+            <!--                                        &lt;!&ndash; End product name &ndash;&gt;-->
+            <!--                                    </div>-->
+            <!--                                    &lt;!&ndash; End product details &ndash;&gt;-->
+            <!--                                </div>-->
+            <!--                                <div class="col-12 item">-->
+            <!--                                    &lt;!&ndash; start product image &ndash;&gt;-->
+            <!--                                    <div class="product-image">-->
+            <!--                                        &lt;!&ndash; start product image &ndash;&gt;-->
+            <!--                                        <a href="#">-->
+            <!--                                            &lt;!&ndash; image &ndash;&gt;-->
+            <!--                                            <img class="primary blur-up lazyload" data-src="assets/images/product-images/product-image7.jpg" src="assets/images/product-images/product-image7.jpg" alt="image" title="product">-->
+            <!--                                            &lt;!&ndash; End image &ndash;&gt;-->
+            <!--                                            &lt;!&ndash; Hover image &ndash;&gt;-->
+            <!--                                            <img class="hover blur-up lazyload" data-src="assets/images/product-images/product-image7-1.jpg" src="assets/images/product-images/product-image7-1.jpg" alt="image" title="product">-->
+            <!--                                            &lt;!&ndash; End hover image &ndash;&gt;-->
+            <!--                                        </a>-->
+            <!--                                        &lt;!&ndash; end product image &ndash;&gt;-->
+            <!--                                    </div>-->
+            <!--                                    &lt;!&ndash; end product image &ndash;&gt;-->
+
+            <!--                                    &lt;!&ndash;start product details &ndash;&gt;-->
+            <!--                                    <div class="product-details text-center">-->
+            <!--                                        &lt;!&ndash; product name &ndash;&gt;-->
+            <!--                                        <div class="product-name">-->
+            <!--                                            <a href="#">Zipper Jacket</a>-->
+            <!--                                        </div>-->
+            <!--                                        &lt;!&ndash; End product name &ndash;&gt;-->
+            <!--                                    </div>-->
+            <!--                                    &lt;!&ndash; End product details &ndash;&gt;-->
+            <!--                                </div>-->
+            <!--                                <div class="col-12 item">-->
+            <!--                                    &lt;!&ndash; start product image &ndash;&gt;-->
+            <!--                                    <div class="product-image">-->
+            <!--                                        &lt;!&ndash; start product image &ndash;&gt;-->
+            <!--                                        <a href="#">-->
+            <!--                                            &lt;!&ndash; image &ndash;&gt;-->
+            <!--                                            <img class="primary blur-up lazyload" data-src="assets/images/product-images/product-image8.jpg" src="assets/images/product-images/product-image8.jpg" alt="image" title="product">-->
+            <!--                                            &lt;!&ndash; End image &ndash;&gt;-->
+            <!--                                            &lt;!&ndash; Hover image &ndash;&gt;-->
+            <!--                                            <img class="hover blur-up lazyload" data-src="assets/images/product-images/product-image8-1.jpg" src="assets/images/product-images/product-image8-1.jpg" alt="image" title="product">-->
+            <!--                                            &lt;!&ndash; End hover image &ndash;&gt;-->
+            <!--                                        </a>-->
+            <!--                                        &lt;!&ndash; end product image &ndash;&gt;-->
+            <!--                                    </div>-->
+
+            <!--                                    &lt;!&ndash; end product image &ndash;&gt;-->
+
+            <!--                                    &lt;!&ndash;start product details &ndash;&gt;-->
+            <!--                                    <div class="product-details text-center">-->
+            <!--                                        &lt;!&ndash; product name &ndash;&gt;-->
+            <!--                                        <div class="product-name">-->
+            <!--                                            <a href="#">Workers Shirt Jacket</a>-->
+            <!--                                        </div>-->
+            <!--                                        &lt;!&ndash; End product name &ndash;&gt;-->
+            <!--                                    </div>-->
+            <!--                                    &lt;!&ndash; End product details &ndash;&gt;-->
+            <!--                                </div>-->
+            <!--                                <div class="col-12 item">-->
+            <!--                                    &lt;!&ndash; start product image &ndash;&gt;-->
+            <!--                                    <div class="product-image">-->
+            <!--                                        &lt;!&ndash; start product image &ndash;&gt;-->
+            <!--                                        <a href="#">-->
+            <!--                                            &lt;!&ndash; image &ndash;&gt;-->
+            <!--                                            <img class="primary blur-up lazyload" data-src="assets/images/product-images/product-image9.jpg" src="assets/images/product-images/product-image9.jpg" alt="image" title="product">-->
+            <!--                                            &lt;!&ndash; End image &ndash;&gt;-->
+            <!--                                            &lt;!&ndash; Hover image &ndash;&gt;-->
+            <!--                                            <img class="hover blur-up lazyload" data-src="assets/images/product-images/product-image9-1.jpg" src="assets/images/product-images/product-image9-1.jpg" alt="image" title="product">-->
+            <!--                                            &lt;!&ndash; End hover image &ndash;&gt;-->
+            <!--                                        </a>-->
+            <!--                                        &lt;!&ndash; end product image &ndash;&gt;-->
+            <!--                                    </div>-->
+            <!--                                    &lt;!&ndash; end product image &ndash;&gt;-->
+
+            <!--                                    &lt;!&ndash;start product details &ndash;&gt;-->
+            <!--                                    <div class="product-details text-center">-->
+            <!--                                        &lt;!&ndash; product name &ndash;&gt;-->
+            <!--                                        <div class="product-name">-->
+            <!--                                            <a href="#">Watercolor Sport Jacket in Brown/Blue</a>-->
+            <!--                                        </div>-->
+            <!--                                        &lt;!&ndash; End product name &ndash;&gt;-->
+            <!--                                    </div>-->
+            <!--                                    &lt;!&ndash; End product details &ndash;&gt;-->
+            <!--                                </div>-->
+            <!--                                <div class="col-12 item">-->
+            <!--                                    &lt;!&ndash; start product image &ndash;&gt;-->
+            <!--                                    <div class="product-image">-->
+            <!--                                        &lt;!&ndash; start product image &ndash;&gt;-->
+            <!--                                        <a href="#">-->
+            <!--                                            &lt;!&ndash; image &ndash;&gt;-->
+            <!--                                            <img class="primary blur-up lazyload" data-src="assets/images/product-images/product-image10.jpg" src="assets/images/product-images/product-image10.jpg" alt="image" title="product">-->
+            <!--                                            &lt;!&ndash; End image &ndash;&gt;-->
+            <!--                                            &lt;!&ndash; Hover image &ndash;&gt;-->
+            <!--                                            <img class="hover blur-up lazyload" data-src="assets/images/product-images/product-image10-1.jpg" src="assets/images/product-images/product-image10-1.jpg" alt="image" title="product">-->
+            <!--                                            &lt;!&ndash; End hover image &ndash;&gt;-->
+            <!--                                        </a>-->
+            <!--                                        &lt;!&ndash; end product image &ndash;&gt;-->
+            <!--                                    </div>-->
+            <!--                                    &lt;!&ndash; end product image &ndash;&gt;-->
+
+            <!--                                    &lt;!&ndash;start product details &ndash;&gt;-->
+            <!--                                    <div class="product-details text-center">-->
+            <!--                                        &lt;!&ndash; product name &ndash;&gt;-->
+            <!--                                        <div class="product-name">-->
+            <!--                                            <a href="#">Washed Wool Blazer</a>-->
+            <!--                                        </div>-->
+            <!--                                        &lt;!&ndash; End product name &ndash;&gt;-->
+            <!--                                    </div>-->
+            <!--                                    &lt;!&ndash; End product details &ndash;&gt;-->
+            <!--                                </div>-->
+            <!--                                <div class="col-12 item">-->
+            <!--                                    &lt;!&ndash; start product image &ndash;&gt;-->
+            <!--                                    <div class="product-image">-->
+            <!--                                        &lt;!&ndash; start product image &ndash;&gt;-->
+            <!--                                        <a href="#">-->
+            <!--                                            &lt;!&ndash; image &ndash;&gt;-->
+            <!--                                            <img class="primary blur-up lazyload" data-src="assets/images/product-images/product-image13.jpg" src="assets/images/product-images/product-image13.jpg" alt="image" title="product">-->
+            <!--                                            &lt;!&ndash; End image &ndash;&gt;-->
+            <!--                                            &lt;!&ndash; Hover image &ndash;&gt;-->
+            <!--                                            <img class="hover blur-up lazyload" data-src="assets/images/product-images/product-image13-1.jpg" src="assets/images/product-images/product-image13-1.jpg" alt="image" title="product">-->
+            <!--                                            &lt;!&ndash; End hover image &ndash;&gt;-->
+            <!--                                        </a>-->
+            <!--                                        &lt;!&ndash; end product image &ndash;&gt;-->
+            <!--                                    </div>-->
+
+            <!--                                    &lt;!&ndash; end product image &ndash;&gt;-->
+
+            <!--                                    &lt;!&ndash;start product details &ndash;&gt;-->
+            <!--                                    <div class="product-details text-center">-->
+            <!--                                        &lt;!&ndash; product name &ndash;&gt;-->
+            <!--                                        <div class="product-name">-->
+            <!--                                            <a href="#">Ashton Necklace</a>-->
+            <!--                                        </div>-->
+            <!--                                        &lt;!&ndash; End product name &ndash;&gt;-->
+            <!--                                    </div>-->
+            <!--                                    &lt;!&ndash; End product details &ndash;&gt;-->
+            <!--                                </div>-->
+            <!--                                <div class="col-12 item">-->
+            <!--                                    &lt;!&ndash; start product image &ndash;&gt;-->
+            <!--                                    <div class="product-image">-->
+            <!--                                        &lt;!&ndash; start product image &ndash;&gt;-->
+            <!--                                        <a href="#">-->
+            <!--                                            &lt;!&ndash; image &ndash;&gt;-->
+            <!--                                            <img class="primary blur-up lazyload" data-src="assets/images/product-images/product-image14.jpg" src="assets/images/product-images/product-image14.jpg" alt="image" title="product">-->
+            <!--                                            &lt;!&ndash; End image &ndash;&gt;-->
+            <!--                                            &lt;!&ndash; Hover image &ndash;&gt;-->
+            <!--                                            <img class="hover blur-up lazyload" data-src="assets/images/product-images/product-image14-1.jpg" src="assets/images/product-images/product-image14-1.jpg" alt="image" title="product">-->
+            <!--                                            &lt;!&ndash; End hover image &ndash;&gt;-->
+            <!--                                        </a>-->
+            <!--                                        &lt;!&ndash; end product image &ndash;&gt;-->
+            <!--                                    </div>-->
+            <!--                                    &lt;!&ndash; end product image &ndash;&gt;-->
+
+            <!--                                    &lt;!&ndash;start product details &ndash;&gt;-->
+            <!--                                    <div class="product-details text-center">-->
+            <!--                                        &lt;!&ndash; product name &ndash;&gt;-->
+            <!--                                        <div class="product-name">-->
+            <!--                                            <a href="#">Ara Ring</a>-->
+            <!--                                        </div>-->
+            <!--                                        &lt;!&ndash; End product name &ndash;&gt;-->
+            <!--                                    </div>-->
+            <!--                                    &lt;!&ndash; End product details &ndash;&gt;-->
+            <!--                                </div>-->
+            <!--                                <div class="col-12 item">-->
+            <!--                                    &lt;!&ndash; start product image &ndash;&gt;-->
+            <!--                                    <div class="product-image">-->
+            <!--                                        &lt;!&ndash; start product image &ndash;&gt;-->
+            <!--                                        <a href="#">-->
+            <!--                                            &lt;!&ndash; image &ndash;&gt;-->
+            <!--                                            <img class="primary blur-up lazyload" data-src="assets/images/product-images/product-image15.jpg" src="assets/images/product-images/product-image15.jpg" alt="image" title="product">-->
+            <!--                                            &lt;!&ndash; End image &ndash;&gt;-->
+            <!--                                            &lt;!&ndash; Hover image &ndash;&gt;-->
+            <!--                                            <img class="hover blur-up lazyload" data-src="assets/images/product-images/product-image15-1.jpg" src="assets/images/product-images/product-image15-1.jpg" alt="image" title="product">-->
+            <!--                                            &lt;!&ndash; End hover image &ndash;&gt;-->
+            <!--                                        </a>-->
+            <!--                                        &lt;!&ndash; end product image &ndash;&gt;-->
+            <!--                                    </div>-->
+            <!--                                    &lt;!&ndash; end product image &ndash;&gt;-->
+
+            <!--                                    &lt;!&ndash;start product details &ndash;&gt;-->
+            <!--                                    <div class="product-details text-center">-->
+            <!--                                        &lt;!&ndash; product name &ndash;&gt;-->
+            <!--                                        <div class="product-name">-->
+            <!--                                            <a href="#">Ara Ring</a>-->
+            <!--                                        </div>-->
+            <!--                                        &lt;!&ndash; End product name &ndash;&gt;-->
+            <!--                                    </div>-->
+            <!--                                    &lt;!&ndash; End product details &ndash;&gt;-->
+            <!--                                </div>-->
+            <!--                            </div>-->
+            <!--                        </div>-->
+            <!--End Recently Product Slider-->
+        </div>
+
+    </div>
+    <!--MainContent-->
+</div>
+<!--End Body Content-->
+
+        <!--        contact me start-->
+       <div class="container" id="contact_me_as_customer">
+        	<div class="row">
+               <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 mb-3">
+                </div>
+
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 mb-3">
+                    <div class="customer-box returning-customer">
+                        <h3><i class="icon anm anm-user-al"></i> Send Message</h3>
+                    </div>
+                </div>
+
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 mb-3">
+                </div>
+            </div>
+
+            <div class="row billing-fields">
+               <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 mb-3">
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 sm-margin-30px-bottom">
+                    <div class="create-ac-content bg-light-gray padding-20px-all" id="sendMessageRow">
+                        <form action="" method="post" enctype="multipart/form-data">
+                            <fieldset>
+<!--                                <h2 class="login-title mb-3">Describe Details</h2>-->
+<!--                                <span>Time:</span> <span>Date:</span>-->
+                                <div class="row">
+                                    <div class="form-group col-md-12 col-lg-12 col-xl-12 required">
+                                        <label for="offer_description">Describe Details<span class="required-f">*</span></label>
+                                        <textarea name="offer_description" id="offer_description" cols="30" rows="6"></textarea>
+                                        <p><strong>Note:</strong>Kindly, include details about your project.</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-md-12 col-lg-12 col-xl-12 required">
+                                        <label for="offer_description">Describe Details<span class="required-f">*</span></label>
+                                        <input type="file" id="attach_file">
+                                    </div>
+                                </div>
+                            </fieldset>
+
+                            <div class="order-button-payment">
+                                    <button class="btn" type="submit">Send</button>
+                                    <button class="btn" type="button" onclick="hideMsgBox();">Close</button>
+                                </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 mb-3">
+                </div>
+            </div>
+        </div>
+<!--        contact me end-->
+
+<script type="text/javascript">
+
+    const mainContent = document.getElementById('MainContent');
+    const contactMe_btn = document.getElementById('contact_me_inperson_seller');
+    const msgBoxRow = document.getElementById('sendMessageRow');
+    const msgBox = document.getElementById('contact_me_as_customer');
+    msgBox.style.display = 'none';
+
+    function showMsgBox(){
+    msgBox.style.display = 'block';
+    msgBox.style.position = 'absolute';
+    msgBox.style.top      = '18%';
+    msgBox.style.opacity  = '100';
+    mainContent.style.opacity = '0.05';
+    }
+
+    function hideMsgBox(){
+    msgBox.style.display = 'none';
+    msgBox.style.visibility = 'none';
+    msgBox.style.opacity  = '0';
+    mainContent.style.opacity = '1';
+    }
+
+</script>
+
+{% endblock %}

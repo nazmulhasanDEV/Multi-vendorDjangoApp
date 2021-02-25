@@ -1,0 +1,100 @@
+{%extends 'seller_admin/base.html' %}
+{% load static %}
+
+{% block page_content %}
+<!-- Page content -->
+<div id="page-content">
+    <!-- eCommerce Product Edit Header -->
+    <div class="content-header">
+        <ul class="nav-horizontal text-center">
+            <li>
+                <a href="page_ecom_dashboard.html"><i class="fa fa-bar-chart"></i> Dashboard</a>
+            </li>
+            <li>
+                <a href="page_ecom_orders.html"><i class="gi gi-shop_window"></i> Orders</a>
+            </li>
+            <li>
+                <a href="page_ecom_order_view.html"><i class="gi gi-shopping_cart"></i> Order View</a>
+            </li>
+            <li>
+                <a href="page_ecom_products.html"><i class="gi gi-shopping_bag"></i> Products</a>
+            </li>
+            <li class="active">
+                <a href="page_ecom_product_edit.html"><i class="gi gi-pencil"></i> Product Edit</a>
+            </li>
+            <li>
+                <a href="page_ecom_customer_view.html"><i class="gi gi-user"></i> Customer View</a>
+            </li>
+        </ul>
+    </div>
+
+
+    <!--                  Django message frameword -->
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <h4{% if message.tags %} class="text-{{ message.tags }}"{% endif %}>{{ message }}</h4>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+
+     <div class="row">
+        <div class="col-lg-12">
+            <!-- General Data Block -->
+            <div class="block">
+                <!-- General Data Title -->
+                <div class="block-title">
+                    <h2><i class="fa fa-pencil"></i> <strong>Change</strong> Security Question</h2>
+                    <!--                                        <span><a href="/product/list/ByCategory">Back To Product List</a></span>-->
+                </div>
+                <!-- END General Data Title -->
+
+                {% if check_security_question is not none %}
+                <!-- General Data Content -->
+                <form action="{% url 'updateSecurityQuestion' %}" method="post" class="form-horizontal form-bordered" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <div class="col-md-6">
+                            <input type="text" value="{{check_security_question.user_question}}" class="form-control" disabled>
+                        </div>
+                        <div class="col-md-6">
+                            <input type="text" name="old_security_question_answer" class="form-control" placeholder="Write answer...." required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-6">
+                            <select id="new_security_question" name="new_security_question" class="select-chosen" data-placeholder="Choose New Security Question.." style="width: 250px;" required>
+                                <option></option>
+                                <!-- Required for data-placeholder attribute to work with Chosen plugin -->
+                                {% for question in question_list %}
+                                <option value="{{question.pk}}">{{question.question}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <input type="text" name="new_security_question_answer" class="form-control" placeholder="Write answer...." required>
+                        </div>
+                    </div>
+
+                    <div class="form-group form-actions">
+                        <div class="col-md-9 col-md-offset-3">
+                            <button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-floppy-o"></i> Update Security Question
+                            </button>
+                        </div>
+                    </div>
+
+                </form>
+                <!-- END General Data Content -->
+                {% endif %}
+            </div>
+            <!-- END General Data Block -->
+
+        </div>
+    </div>
+    <!-- END Product Edit Content -->
+</div>
+<!--<script src="{% static 'seller_admin/js/dropzone.js' %}"></script>-->
+<!-- END Page Content -->
+{% endblock %}

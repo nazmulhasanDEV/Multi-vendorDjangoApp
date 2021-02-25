@@ -1,0 +1,84 @@
+{% extends 'super_admin/base.html' %}
+{% load static %}
+
+{% block page_content %}
+<div class="main-panel">
+        <div class="content-wrapper">
+<!--          data table -->
+          <div class="row">
+            <div class="col-md-12">
+              <div class="page-header">
+            <h3 class="page-title">
+              Posted Job List
+            </h3>
+          </div>
+              <div class="card">
+            <div class="card-body">
+              <h4 class="card-title">Posted Job List</h4>
+                <!--                  Django message frameword -->
+                            {% if messages %}
+                              <ul class="messages">
+                              {% for message in messages %}
+                              <h5{% if message.tags %} class="text-{{ message.tags }} text-center"{% endif %}>{{ message }}</h5>
+                              {% endfor %}
+                              </ul>
+						   {% endif %}
+
+              <div class="row">
+                <div class="col-12">
+                  <div class="table-responsive">
+                       {% if online_job_list|length > 0 %}
+                    <table id="order-listing" class="table">
+                      <thead>
+                        <tr>
+                            <th class="text-center">ID</th>
+                            <th class="text-center">Customer Name</th>
+                            <th class="text-center">Job Category</th>
+                            <th class="text-center">Status</th>
+                            <th class="text-center">Posted</th>
+                            <th class="text-center">Action</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                      {% for job in online_job_list %}
+                        <tr>
+                            <td class="text-center">{{forloop.counter}}</td>
+                            <td class="text-center">{{job.user.name}}</td>
+                            <td class="text-center">{{job.service_category_in_character}}</td>
+                            <td class="text-center">Completed</td>
+                            <td class="text-center">{{job.project_posted_at}}</td>
+                            <td class="text-center">
+                                <div class="btn-group">
+<!--                                    <i class="fa fa-edit"></i> for edit icon -->
+<!--                                    <a href="" data-toggle="tooltip" class="btn btn-sm btn-success">Details</a>-->
+                                    <a href="{% url 'delOnlineJobPostFromList' pk=job.pk %}" data-toggle="tooltip" class="btn btn-sm btn-danger"><i class="fa fa-times"></i> Remove</a>
+                                </div>
+                            </td>
+                        </tr>
+                      {% endfor %}
+                      </tbody>
+                    </table>
+                      {% else %}
+                      <h4 class="text-center">No job posted yet!</h4>
+                      {% endif %}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+            </div>
+          </div>
+        </div>
+        <!-- content-wrapper ends -->
+        <!-- partial:../../partials/_footer.html -->
+        <footer class="footer">
+          <div class="d-sm-flex justify-content-center justify-content-sm-between">
+            <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2018 <a href="https://www.urbanui.com/" target="_blank">Urbanui</a>. All rights reserved.</span>
+            <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Hand-crafted & made with <i class="far fa-heart text-danger"></i></span>
+          </div>
+        </footer>
+        <!-- partial -->
+      </div>
+{% endblock %}
+
+

@@ -1,0 +1,81 @@
+@import url('https://fonts.googleapis.com/css2?family=Vollkorn:wght@500&display=swap');
+
+
+
+body{
+    background-color: #F5FAFA!important;
+}
+
+
+#main_fontent {
+    background: white;
+    margin-top: 5%;
+}
+
+#title{
+    padding-top: 20px;
+    font-family: 'Vollkorn', serif;
+}
+
+#label{
+    font-family: 'Vollkorn', serif;
+}
+
+#main_form {
+    margin-top: 35px;
+}
+
+
+#attach_file {
+  color: transparent;
+}
+#attach_file::-webkit-file-upload-button {
+  visibility: hidden;
+}
+#attach_file::before {
+  content: 'Attach File';
+  color: black;
+  display: inline-block;
+  background: -webkit-linear-gradient(top, #f9f9f9, #e3e3e3);
+  border: 1px solid #999;
+  border-radius: 3px;
+  padding: 5px 8px;
+  outline: none;
+  white-space: nowrap;
+  -webkit-user-select: none;
+  cursor: pointer;
+  text-shadow: 1px 1px #fff;
+  font-weight: 700;
+  font-size: 10pt;
+}
+#attach_file:hover::before {
+  border-color: black;
+}
+.custom-file-input:active {
+  outline: 0;
+}
+#attach_file:active::before {
+  background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9); 
+}
+
+
+
+#submit {
+    position: relative;
+    left: 40%;
+    width: 150px;
+    background: #0B5B6F;
+    color: white;
+}
+
+
+
+
+
+
+
+
+
+
+
+

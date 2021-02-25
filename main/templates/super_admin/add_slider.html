@@ -1,0 +1,147 @@
+{% extends 'super_admin/base.html' %}
+{% load static %}
+
+{% block page_content %}
+<div class="main-panel">
+        <div class="content-wrapper">
+          <div class="row">
+            <div class="col-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title"><b>Add New Slider To Home Page</b></h4>
+                  <p class="card-description">
+                    Add Slider
+                  </p>
+<!--                  Django message frameword -->
+                            {% if messages %}
+                              <ul class="messages">
+                              {% for message in messages %}
+                              <h4{% if message.tags %} class="text-{{ message.tags }}"{% endif %}>{{ message }}</h4>
+                              {% endfor %}
+                              </ul>
+						   {% endif %}
+
+                  <form class="forms-sample" action="{%url 'frontEndHomeSlider' %}" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group">
+                      <label for="exampleInputName1">Slider Title</label>
+                      <input type="text" class="form-control" id="slider_title" name="slider_title" placeholder="Slider Title" required>
+                    </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                      <label for="exampleInputName1">Slider Subtitle</label>
+                      <input type="text" class="form-control" id="slider_subtitle" name="slider_subtitle" placeholder="Slider Subtitle" required>
+                    </div>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label>Upload Image Slider (<span style="color:red;">only image</span>)</label>
+                      <div class="input-group col-xs-6">
+                        <input type="file" name="slider_img" id="slider_img" class="form-control" onchange="previewImg(this);" required>
+                      </div>
+                    </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                      <label>Uploaded Image</label>
+                      <div class="input-group col-xs-6">
+                        <img src="{%static 'seller_admin/img/placeholders/avatars/avatar2.jpg' %}" name="slider_img_preview" id="slider_img_preview" style="width:70%; height:160px; margin-left:50px;" alt="">
+                      </div>
+                    </div>
+<!--                        script for pre-viewing image -->
+                          <script>
+                                                function previewImg(input){
+                                                    var file = $("#slider_img").get(0).files[0];
+
+                                                    if(file){
+                                                        var reader = new FileReader();
+
+                                                        reader.onload = function(){
+                                                            $("#slider_img_preview").attr("src", reader.result);
+                                                        }
+
+                                                        reader.readAsDataURL(file);
+                                                    }
+                                                }
+                                            </script>
+
+                      </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+<!--         slider data table -->
+          <div class="row">
+            <div class="col-md-12">
+              <div class="page-header">
+            <h3 class="page-title">
+              Slider for Front-end Home page
+            </h3>
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#">Uploaded Slider</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Slider List</li>
+              </ol>
+            </nav>
+          </div>
+              <div class="card">
+            <div class="card-body">
+              <h4 class="card-title">Slider List</h4>
+              <div class="row">
+                <div class="col-12">
+                  <div class="table-responsive">
+                    <table id="order-listing" class="table">
+                      <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Image</th>
+                            <th>Slider Title</th>
+                            <th>Slider Sub-title</th>
+                          <th>Action</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                      {% for slider in slider_list %}
+                        <tr>
+                            <td>{{forloop.counter}}</td>
+                          <td><img src="{{slider.slider_img_url}}" alt=""></td>
+                          <td>{{slider.slider_img_title}}</td>
+                          <td>{{slider.slider_img_subtitle}}</td>
+                          <td>
+                             <div class="btn-group">
+                                    <a href="{% url 'editSliderToHomePage' pk=slider.pk %}" data-toggle="tooltip" class="btn btn-sm btn-success"><i class="fa fa-edit"></i> Edit</a>
+                                    <a href="{% url 'delSliderToHomePage' pk=slider.pk %}" data-toggle="tooltip" class="btn btn-sm btn-danger"><i class="fa fa-times"></i> Delete</a>
+                                </div>
+                          </td>
+                        </tr>
+                      {% endfor %}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+            </div>
+          </div>
+        </div>
+        <!-- content-wrapper ends -->
+        <!-- partial:../../partials/_footer.html -->
+        <footer class="footer">
+          <div class="d-sm-flex justify-content-center justify-content-sm-between">
+            <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2018 <a href="https://www.urbanui.com/" target="_blank">Urbanui</a>. All rights reserved.</span>
+            <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Hand-crafted & made with <i class="far fa-heart text-danger"></i></span>
+          </div>
+        </footer>
+        <!-- partial -->
+      </div>
+{% endblock %}

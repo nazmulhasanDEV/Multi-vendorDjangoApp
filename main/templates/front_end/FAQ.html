@@ -1,0 +1,35 @@
+{% extends 'front_end/base.html' %}
+{% load static %}
+
+{% block main_block %}
+<br><br><br><br>
+<!--Body Content-->
+    <div id="page-content">
+    	<!--Page Title-->
+    	<div class="page section-header text-center">
+			<div class="page-title">
+        		<div class="wrapper"><h1 class="page-width">FAQs</h1></div>
+      		</div>
+		</div>
+        <div class="container">
+        	<div class="row">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12 main-col">
+                	<div id="accordionExample">
+                        {% for faq_category in faq_category %}
+                        <h2 class="title h2">{{faq_category.faq_category}}</h2>
+                           {% for faq in faqs %}
+                             {% if faq_category.pk == faq.faq_category_id %}
+                        <div class="faq-body">
+                            <h4 class="panel-title" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">{{faq.faq_question}}</h4>
+                            <div id="collapseOne" class="collapse panel-content" data-parent="#accordionExample">{{faq.faq_ans}}</div>
+                        </div>
+                             {% endif %}
+                           {% endfor %}
+                        {% endfor %}
+                    </div>
+               	</div>
+            </div>
+        </div>
+
+    </div>
+{% endblock %}

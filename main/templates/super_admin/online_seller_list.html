@@ -1,0 +1,81 @@
+{% extends 'super_admin/base.html' %}
+{% load static %}
+
+{% block page_content %}
+<div class="main-panel">
+        <div class="content-wrapper">
+<!--          data table -->
+          <div class="row">
+            <div class="col-md-12">
+              <div class="page-header">
+            <h3 class="page-title">
+              Seller List
+            </h3>
+          </div>
+              <div class="card">
+            <div class="card-body">
+              <h4 class="card-title">Online Seller List</h4>
+
+                <!--                  Django message frameword -->
+                            {% if messages %}
+                              <ul class="messages">
+                              {% for message in messages %}
+                              <h5{% if message.tags %} class="text-{{ message.tags }}"{% endif %}>{{ message }}</h5>
+                              {% endfor %}
+                              </ul>
+						   {% endif %}
+
+              <div class="row">
+                <div class="col-12">
+                  <div class="table-responsive">
+                    <table id="order-listing" class="table">
+                      <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Username</th>
+                            <th>Name</th>
+                            <th>Seller Status</th>
+                            <th>Registration Date</th>
+                            <th>Action</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                      {% for seller in selller_list %}
+                       {% if seller.product_seller %}
+                        <tr>
+                            <td>{{forloop.counter}}</td>
+                            <td>{{seller.username}}</td>
+                            <td>{{seller.name}}</td>
+                            <td>Product Seller</td>
+                            <td>{{seller.register_date}}</td>
+                            <td>
+                                <div class="btn-group">
+<!--                                    <a href="" data-toggle="tooltip" class="btn btn-sm btn-success"><i class="fa fa-edit"></i> Edit</a>-->
+                                    <a href="" data-toggle="tooltip" class="btn btn-sm btn-danger"><i class="fa fa-times"></i> Delete</a>
+                                </div>
+                            </td>
+                        </tr>
+                       {% endif %}
+                      {% endfor %}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+            </div>
+          </div>
+        </div>
+        <!-- content-wrapper ends -->
+        <!-- partial:../../partials/_footer.html -->
+        <footer class="footer">
+          <div class="d-sm-flex justify-content-center justify-content-sm-between">
+            <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2018 <a href="https://www.urbanui.com/" target="_blank">Urbanui</a>. All rights reserved.</span>
+            <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Hand-crafted & made with <i class="far fa-heart text-danger"></i></span>
+          </div>
+        </footer>
+        <!-- partial -->
+      </div>
+{% endblock %}
+

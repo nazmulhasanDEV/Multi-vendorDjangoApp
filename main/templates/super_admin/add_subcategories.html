@@ -1,0 +1,100 @@
+{% extends 'super_admin/base.html' %}
+{% load static %}
+
+{% block page_content %}
+<div class="main-panel">
+        <div class="content-wrapper">
+          <!--                  Django message frameword -->
+                            {% if messages %}
+                              <ul class="messages">
+                              {% for message in messages %}
+                              <h4{% if message.tags %} class="text-{{ message.tags }}"{% endif %}>{{ message }}</h4>
+                              {% endfor %}
+                              </ul>
+						   {% endif %}
+          <div class="row">
+            <div class="col-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title"><b>Add New Category</b></h4>
+                  <p class="card-description">
+                    Add category
+                  </p>
+
+
+                  <form class="forms-sample" action="{%url 'addSubCat' pk=pk %}" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group">
+                      <input type="text" class="form-control" id="add_subcategory" name="add_subcategory" autofocus="" placeholder="Add Sub-category" required>
+                    </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <button type="submit" class="btn btn-success mr-2">Add Sub-category</button>
+                    </div>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+<!--         slider data table -->
+          <div class="row">
+            <div class="col-md-12">
+              <div class="page-header">
+            <h3 class="page-title">
+              Subcategory list
+            </h3>
+
+          </div>
+              <div class="card">
+            <div class="card-body">
+              <h4 class="card-title">Sub-Category List</h4>
+              <div class="row">
+                <div class="col-12">
+                  <div class="table-responsive">
+                    <table id="order-listing" class="table">
+                      <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Sub-Category Name</th>
+                            <th>Action</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                      {% for subcat_list in subcat_list %}
+                        <tr>
+                            <td>{{forloop.counter}}</td>
+                          <td>{{subcat_list.subcategory_name}}</td>
+                          <td>
+                             <div class="btn-group">
+                                    <a href="#" data-toggle="tooltip" class="btn btn-sm btn-success"><i class="fa fa-edit"></i> Edit</a>
+                                    <a href="{%url 'delProductSubcat' pk=subcat_list.pk %}" data-toggle="tooltip" class="btn btn-sm btn-danger"><i class="fa fa-times"></i> Delete</a>
+                                </div>
+                          </td>
+                        </tr>
+                      {% endfor %}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+            </div>
+          </div>
+        </div>
+        <!-- content-wrapper ends -->
+        <!-- partial:../../partials/_footer.html -->
+        <footer class="footer">
+          <div class="d-sm-flex justify-content-center justify-content-sm-between">
+            <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2018 <a href="https://www.urbanui.com/" target="_blank">Urbanui</a>. All rights reserved.</span>
+            <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Hand-crafted & made with <i class="far fa-heart text-danger"></i></span>
+          </div>
+        </footer>
+        <!-- partial -->
+      </div>
+{% endblock %}

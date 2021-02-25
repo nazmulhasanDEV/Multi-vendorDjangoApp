@@ -1,0 +1,204 @@
+{% extends 'front_end/base.html' %}
+{% load static %}
+
+
+{% block main_block %}
+<br><br><br><br>
+<!--Body Content-->
+<div id="page-content">
+    <!--MainContent-->
+    <div id="MainContent" class="main-content" role="main">
+
+        <div id="ProductSection-product-template" class="product-template__container prstyle1 container">
+            <!--Product Tabs-->
+            <div class="tabs-listing">
+                <ul class="product-tabs">
+                    <li rel="tab1"><a class="tablink">Service Details</a></li>
+                    <li rel="tab2"><a class="tablink">Job History</a></li>
+                    <li rel="job_portfolio"><a class="tablink">Portfolio</a></li>
+                    <li rel="seller_profile"><a class="tablink">Seller Profile</a></li>
+                </ul>
+                <div class="tab-container">
+
+                    <div id="tab1" class="tab-content">
+                        <div class="product-description rte">
+                            <h2>{{seller_details.service_title}}</h2>
+                            <p class="breadcrumb">
+                                {{seller_details.service_description}}
+                            </p>
+                        </div>
+                    </div>
+
+                    <div id="tab2" class="tab-content">
+                        <div id="shopify-product-reviews">
+                            <div class="spr-container">
+                                <div class="spr-header clearfix">
+                                    <h3>Jobs completed:</h3>
+                                    <h3>Total Earned:</h3>
+                                </div>
+                                <div class="spr-content">
+                                    <div class="spr-reviews">
+                                        <h2>Client Reviews</h2>
+                                        <div class="spr-review">
+                                            <div class="spr-review-header">
+                                                <span class="product-review spr-starratings spr-review-header-starratings"><span
+                                                        class="reviewLink"><i class="fa fa-star"></i><i
+                                                        class="font-13 fa fa-star"></i><i
+                                                        class="font-13 fa fa-star"></i><i
+                                                        class="font-13 fa fa-star"></i><i
+                                                        class="font-13 fa fa-star"></i></span></span>
+                                                <h3 class="spr-review-header-title">Neque porro quisquam est qui dolorem
+                                                    ipsum quia dolor sit amet, consectetur, adipisci velit...</h3>
+                                                <span class="spr-review-header-byline"><strong>quoctri1905</strong> on <strong>Dec 30, 2018</strong></span>
+                                            </div>
+
+                                            <div class="spr-review-content">
+                                                <p class="spr-review-content-body">Lorem Ipsum is simply dummy text of
+                                                    the printing and typesetting industry. Lorem Ipsum has been the
+                                                    industry's standard dummy text ever since the 1500s, when an unknown
+                                                    printer took a galley of type and scrambled.<br>
+                                                    <br>Lorem Ipsum is simply dummy text of the printing and typesetting
+                                                    industry.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="job_portfolio" class="tab-content">
+
+                        <div class="categories-list-items">
+
+                            <div class="row">
+                                {% for img in seller_portfolio_imgs %}
+                                <div class="col-md-3">
+                                    <div class="">
+                                        <a href="#" class="thumb">
+                                           <img class="primary blur-up lazyload" data-src="{{img.portfolio_img.url}}" src="{{img.portfolio_img.url}}" style="width:100%;height:200px;border-radius:10px;" alt="" title=""></a>
+<!--                                        <p></p>-->
+                                        <h2 class="text-center"><a href="#">{{img.img_title}}</a></h2>
+                                        <br><br><br>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div id="seller_profile" class="tab-content">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <center>
+                                        <img src="{{profile_pic.user_profile_img}}" style="width:150px; height: 150px; border-radius: 50%;" alt="">
+                                    </center>
+                                    <h5 class="text-center">{{seller_details.seller_id.name}}</h5>
+                                    <p class="text-center">{{seller_details.sellerStateFullName}}, {{seller_details.sellerCountryFullName}}</p>
+                                    <a href="#" id="hire_me_online_seller"><button type="button" class="hire_me_online_seller" style="width:150px;height:40px;background:black;color:white;cursor:pointer;">Hire Me</button></a>
+                                </div>
+                                <div class="col-md-8">
+
+                                    <div class="row">
+                                        <div class="breadcrumb" style="width: 100%;">
+                                            <h3>Description About Seller</h3>
+                                        </div>
+                                        <div>
+                                            <p>{{seller_portfolio_info.description_about_seller}}</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <br><br>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="breadcrumb" style="width: 100%;">
+                                            <h3>Skills</h3>
+                                        </div>
+                                        <p>{{seller_portfolio_info.skills_of_seller}}</p>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <br><br>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+            <!--End Product Tabs-->
+
+            <!--Related Product Slider-->
+            <div class="related-product grid-products">
+                <header class="section-header">
+                    <h2 class="section-header__title text-center h2"><span>Related Services Of This Seller</span></h2>
+<!--                    <p class="sub-heading">You can stop autoplay, increase/decrease aniamtion speed and number of grid-->
+<!--                        to show and products from store admin.</p>-->
+                </header>
+                <div class="productPageSlider">
+                    {% for x in others_services_of_this_seller %}
+                    <div class="col-12 item">
+                        <!-- start product image -->
+                        <div class="product-image">
+                            <!-- start product image -->
+                            <a href="#">
+                                <!-- image -->
+                                <img class="primary blur-up lazyload"
+                                     data-src="{{x.service_related_img1.url}}"
+                                     src="{{x.service_related_img1.url}}"
+                                     alt="image" title="product">
+                                <!-- End image -->
+                                <!-- Hover image -->
+                                <img class="hover blur-up lazyload" data-src="{{x.service_related_img1.url}}" src="{{x.service_related_img1.url}}">
+                                <!-- End hover image -->
+                            </a>
+                            <!-- end product image -->
+
+                            <!-- Start product button -->
+                            <form class="variants add" action="#" method="post">
+                                <a href="{%url 'onlineServiceSellerDetails' pk=x.pk %}"><button class="btn btn-addto-cart" type="button" tabindex="0">See More</button></a>
+                            </form>
+
+                            <!-- end product button -->
+                        </div>
+                        <!-- end product image -->
+                        <!--start product details -->
+                        <div class="product-details text-center">
+                            <!-- product name -->
+                            <div class="product-name">
+                                <a href="{%url 'onlineServiceSellerDetails' pk=x.pk %}">{{x.service_title}}</a>
+                            </div>
+                            <!-- End product name -->
+                            <!-- product price -->
+                            <div class="product-price">
+                                <span class="price">Started at: $600.00</span>
+                            </div>
+                            <!-- End product price -->
+
+                            <div class="product-review">
+                                <i class="font-13 fa fa-star"></i> 5.0
+<!--                                <i class="font-13 fa fa-star"></i>-->
+<!--                                <i class="font-13 fa fa-star"></i>-->
+<!--                                <i class="font-13 fa fa-star-o"></i>-->
+<!--                                <i class="font-13 fa fa-star-o"></i>-->
+                            </div>
+                        </div>
+                        <!-- End product details -->
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <!--#ProductSection-product-template-->
+    </div>
+    <!--MainContent-->
+</div>
+<!--End Body Content-->
+
+{% endblock %}

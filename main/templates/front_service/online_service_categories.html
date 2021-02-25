@@ -1,0 +1,50 @@
+{% extends 'front_end/base.html' %}
+{% load static %}
+
+{% block main_block %}
+<br><br><br><br>
+<!--Body Content-->
+
+    <div id="page-content">
+        <br><br><br>
+        <div class="container-fluid">
+        	<div class="row">
+            	<!--Sidebar-->
+            	<div class="col-12 col-sm-12 col-md-3 col-lg-2 sidebar filterbar">
+                	<div class="closeFilter d-block d-md-none d-lg-none"><i class="icon icon anm anm-times-l"></i></div>
+                	<div class="sidebar_tags">
+                    	<!--Categories-->
+                    	<div class="sidebar_widget categories filter-widget">
+                            <div class="widget-title"><h2>Categories</h2></div>
+                            <div class="widget-content">
+                                <ul class="sidebar_categories">
+                                    {% for x in service_cats %}
+                                    <li class="lvl-1"><a href="{%url 'serviceSubcat' pk=x.pk %}" class="site-nav"><h3 style="color:gray;">{{x.service_name}}</h3></a></li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <!--End Sidebar-->
+                <!--Main Content-->
+                <div class="col-12 col-sm-12 col-md-9 col-lg-10 main-col shop-grid-7">
+                	<div class="productList">
+                      {% block service_categories %}
+
+                      {% endblock service_categories %}
+                </div>
+                <!--End Main Content-->
+            </div>
+        </div>
+
+    </div>
+
+    <!--End Body Content-->
+
+{% endblock main_block %}
+
+
+
+
