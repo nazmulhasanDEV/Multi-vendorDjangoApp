@@ -1,6 +1,8 @@
 import django_heroku
 import os
 from pathlib import Path
+import dj_database_url
+
 
 # import dj_database_url
 
@@ -91,6 +93,9 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+DATABASES['default'].update(dj_database_url.config(conn_max_age=500, ssl_require=True))
+
 
 # chat app
 # Change 'default' database configuration with $DATABASE_URL.
