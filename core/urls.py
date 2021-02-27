@@ -16,6 +16,6 @@ urlpatterns = [
     path('upload_file', upload_file, name='upload_file'),
     path('download/<path:file_name>', download, name='download'),
     path('', login_required(
-        TemplateView.as_view(template_name='core/chat.html')), name='chathome'),
+        TemplateView.as_view(template_name='core/chat.html')), name='home'),
 ]
 
