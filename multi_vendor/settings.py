@@ -2,7 +2,7 @@ import django_heroku
 import os
 from pathlib import Path
 
-# import dj_database_url
+import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'customer',
     'frontEnd',
     'service',
+    'core',
 
     'testapp',
 
@@ -50,7 +51,7 @@ AUTH_USER_MODEL = 'users.CustomUser'
 
 MIDDLEWARE = [
     #chat app
-    # 'whitenoise.middleware.WhiteNoiseMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     # end chat app
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -94,7 +95,7 @@ DATABASES = {
 
 # chat app
 # Change 'default' database configuration with $DATABASE_URL.
-# DATABASES['default'].update(dj_database_url.config(conn_max_age=500, ssl_require=True))
+DATABASES['default'].update(dj_database_url.config(conn_max_age=500, ssl_require=True))
 
 
 # Password validation
@@ -141,7 +142,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 
 # chat app
-# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # smtp configuration
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
@@ -154,40 +155,40 @@ EMAIL_HOST_PASSWORD = 'password'
 
 
 # chat ap
-# CELERY_BROKER_URL = os.environ['REDIS_URL']
-# CELERY_RESULT_BACKEND = os.environ['REDIS_URL']
+CELERY_BROKER_URL = os.environ['REDIS_URL']
+CELERY_RESULT_BACKEND = os.environ['REDIS_URL']
 #
-# CHANNEL_LAYERS = {
-#     'default': {
-#         'BACKEND': 'channels_redis.core.RedisChannelLayer',
-#         'CONFIG': {
-#             "hosts": [os.environ['REDIS_URL']],
-#         },
-#     },
-# }
-#
-# CACHES = {
-#     "default": {
-#         "BACKEND": "django_redis.cache.RedisCache",
-#         "LOCATION": os.environ['REDIS_URL'],
-#         "OPTIONS": {
-#             "CLIENT_CLASS": "django_redis.client.DefaultClient"
-#         }
-#     }
-# }
+CHANNEL_LAYERS = {
+     'default': {
+         'BACKEND': 'channels_redis.core.RedisChannelLayer',
+         'CONFIG': {
+             "hosts": [os.environ['REDIS_URL']],
+         },
+     },
+ }
 
-# AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
-# AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
-# AWS_STORAGE_BUCKET_NAME = os.environ.get('AWS_STORAGE_BUCKET_NAME')
-# AWS_S3_FILE_OVERWRITE = False
-# AWS_DEFAULT_ACL = None
-# DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+CACHES = {
+     "default": {
+         "BACKEND": "django_redis.cache.RedisCache",
+         "LOCATION": os.environ['REDIS_URL'],
+         "OPTIONS": {
+             "CLIENT_CLASS": "django_redis.client.DefaultClient"
+         }
+     }
+ }
+
+AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
+AWS_STORAGE_BUCKET_NAME = os.environ.get('AWS_STORAGE_BUCKET_NAME')
+AWS_S3_FILE_OVERWRITE = False
+AWS_DEFAULT_ACL = None
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
 # Collect media files here
 
-# MEDIA_ROOT = os.path.join(PROJECT_ROOT, 'run', 'media_root')
-# MEDIA_ROOT = 'https://%s.s3.amazonaws.com/media/' % AWS_STORAGE_BUCKET_NAME
-# MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(PROJECT_ROOT, 'run', 'media_root')
+MEDIA_ROOT = 'https://%s.s3.amazonaws.com/media/' % AWS_STORAGE_BUCKET_NAME
+MEDIA_URL = '/media/'
 
 
 # Activate Django-Heroku.
