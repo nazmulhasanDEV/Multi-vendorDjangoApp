@@ -1,4 +1,4 @@
-from django.contrib.auth.models import User
+from users.models import CustomUser as User
 from django.shortcuts import get_object_or_404
 from core.models import MessageModel, File
 from rest_framework.serializers import ModelSerializer, CharField, SerializerMethodField

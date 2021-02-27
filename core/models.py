@@ -1,4 +1,4 @@
-from django.contrib.auth.models import User
+from users.models import CustomUser as User
 from django.db.models import (Model, TextField, DateTimeField, ForeignKey,
                               CASCADE, FileField)
 from django.core.files.storage import FileSystemStorage
