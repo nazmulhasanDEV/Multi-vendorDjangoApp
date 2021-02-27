@@ -84,7 +84,7 @@ function drawMessage(message) {
 }
 
 function getConversation(recipient) {
-    $.getJSON(`chat/chatmessage/?target=${recipient}`, function (data) {
+    $.getJSON(`/chat/chatmessage/?target=${recipient}`, function (data) {
         messageList.children('.message').remove();
         for (let i = data['results'].length - 1; i >= 0; i--) {
             drawMessage(data['results'][i]);
