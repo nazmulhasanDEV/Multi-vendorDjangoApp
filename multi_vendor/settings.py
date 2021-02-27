@@ -45,8 +45,10 @@ INSTALLED_APPS = [
     # ckeditor
     'ckeditor',
 
-    # chat channels
+   # 3rd party
+    'rest_framework',
     'channels',
+    'storages',
 ]
 
 
