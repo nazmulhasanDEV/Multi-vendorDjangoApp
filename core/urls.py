@@ -11,7 +11,7 @@ router.register(r'message', MessageModelViewSet, basename='message-api')
 router.register(r'user', UserModelViewSet, basename='user-api')
 
 urlpatterns = [
-    path(r'api/v1/', include(router.urls)),
+    path(r'chat', include(router.urls)),
     
     path('upload_file', upload_file, name='upload_file'),
     path('download/<path:file_name>', download, name='download'),
