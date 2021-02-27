@@ -7,8 +7,8 @@ from django.conf import settings
 from django.views.static import serve
 
 router = DefaultRouter()
-router.register(r'message', MessageModelViewSet, basename='message-api')
-router.register(r'user', UserModelViewSet, basename='user-api')
+router.register('message', MessageModelViewSet, basename='message-api')
+router.register('user', UserModelViewSet, basename='user-api')
 
 urlpatterns = [
     path('chat', include(router.urls)),
