@@ -15,7 +15,7 @@ function updateUserList() {
                                <a href="#" class="user">
                                 <div class="d-flex bd-highlight">
                                     <div class="img_cont">
-                                        <img src="https://static.turbosquid.com/Preview/001292/481/WV/_D.jpg"
+                                        <img src="https://static.turbosquid.com/Preview/001292/481/WV/_D.jpg"  width='100px' height='100px'
                                              class="rounded-circle user_img">
                                          <span class="online_icon"></span>
                                     </div>
