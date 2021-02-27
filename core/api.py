@@ -6,7 +6,6 @@ from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.authentication import SessionAuthentication
 from django.views.decorators.csrf import csrf_exempt
-from chat import settings
 from core.serializers import MessageModelSerializer, UserModelSerializer
 from core.models import MessageModel, File
 from django.http import JsonResponse
