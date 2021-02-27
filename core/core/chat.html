@@ -1,0 +1,128 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block main %}
+<div class="container-fluid h-100">
+    <div class="row justify-content-center h-100">
+        <div class="col-md-4 col-xl-3 chat">
+            <div class="card mb-sm-3 mb-md-0 contacts_card">
+                <div class="card-header">
+                    <div class="input-group">
+                        <input class="form-control search" name="" placeholder="Search..." type="text">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text search_btn"><i class="fas fa-search"></i></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body contacts_body">
+                    <ui class="contacts" id="user-list">
+
+                        {# Users go here #}
+
+                    </ui>
+                </div>
+                <div class="card-footer">
+
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8 col-xl-6 chat">
+            <div class="card">
+                <div class="card-header msg_head">
+                    <div class="d-flex bd-highlight">
+                        <div class="img_cont">
+                            <img class="rounded-circle user_img"
+                                 src="https://static.turbosquid.com/Preview/001292/481/WV/_D.jpg">
+                            <span class="online_icon"></span>
+                        </div>
+                        <div class="user_info">
+                            <span>Chat with Khalid</span>
+                            <p>1767 Messages</p>
+                        </div>
+                        <div class="video_cam d-flex flex-column justify-content-center">
+                            <div class="rating-stars"><span class="fa fa-star rating checked"></span>
+                                <span class="fa fa-star rating checked"></span>
+                                <span class="fa fa-star rating checked"></span>
+                                <span class="fa fa-star rating checked"></span>
+                                <span class="fa fa-star rating checked "></span>
+                            </div>
+                            <div class="rating-text" >
+                                <p>5.0</p>
+                            </div>
+                        </div>
+                        <div class="video_cam d-flex flex-column justify-content-center">
+                            <div class="time">
+                                <div>
+                                    <span>PAK</span>
+                                </div>
+                                <div>
+                                    <span id="curr-time" ></span>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <span id="action_menu_btn"><i class="fas fa-ellipsis-v"></i></span>
+                    <div class="action_menu">
+                        <ul>
+                            <li><i class="fas fa-user-circle"></i> View profile</li>
+                            <li><i class="fas fa-users"></i> Add to close friends</li>
+                            <li><i class="fas fa-plus"></i> Add to group</li>
+                            <li><i class="fas fa-ban"></i> Block</li>
+                        </ul>
+                    </div>
+                </div>
+                      
+                <div class="card-body msg_card_body messages" id="messages">
+
+                    {# Messages go here #}
+
+                </div>
+             
+                <div class="card-footer">
+                 
+                <div class="progress" >
+  <div class="progress-bar  bg-info"  role="progressbar" style="width: 0%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"><span id="percent"></span></div>
+</div>
+                   <div id="preview">
+    
+  </div>
+              
+              <div class="input-group">
+                        <div class="input-group-append">
+                            <span class="input-group-text attach_btn" id="btn-attach"><i
+                                    class="fas fa-paperclip"></i></span>
+                            <input type="file" id="theFileInput" name="theFileInput" style="display:none;"/>
+
+                        </div>
+                        <textarea class="form-control type_msg" id="chat-input" name=""
+                                  placeholder="Type your message..."></textarea>
+                        <div class="input-group-append">
+                            <span class="input-group-text send_btn" id="btn-send"><i class="fas fa-location-arrow"></i></span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    let sessionKey = '{{ request.session.session_key }}';
+    let currentUser = '{{ request.user.username }}';
+</script>
+<script src="{% static 'js/app.js' %}?v=000033"></script>
+
+{% endblock %}
+<!--                    <div class="input-group">-->
+<!--                        <input class="form-control input" id="chat-input"-->
+<!--                               maxlength="500"-->
+<!--                               placeholder="Type your message here ..."-->
+<!--                               type="text">-->
+<!--                        <span class="input-group-btn">-->
+<!--                            <button class="btn btn-info btn"-->
+<!--                                    id="btn-send">-->
+<!--                                Send</button>-->
+<!--                        </span>-->
+<!--                    </div>-->
