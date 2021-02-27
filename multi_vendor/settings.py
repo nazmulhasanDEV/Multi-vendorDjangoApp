@@ -191,7 +191,6 @@ DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
 # Collect media files here
 
-MEDIA_ROOT = os.path.join(PROJECT_ROOT, 'run', 'media_root')
 MEDIA_ROOT = 'https://%s.s3.amazonaws.com/media/' % AWS_STORAGE_BUCKET_NAME
 MEDIA_URL = '/media/'
 
