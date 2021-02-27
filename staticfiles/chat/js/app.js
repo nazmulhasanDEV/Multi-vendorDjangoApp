@@ -8,7 +8,7 @@ let atchBtn=$('#btn-attach');
 let curr_time=$('#curr-time');
 
 function updateUserList() {
-    $.getJSON('api/v1/user/', function (data) {
+    $.getJSON('chat/api/v1/user/', function (data) {
         userList.children('.usernodes').remove();
         for (let i = 0; i < data.length; i++) {
             const userItem = `<li class="user-nodes">
