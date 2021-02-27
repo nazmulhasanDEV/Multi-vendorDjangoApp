@@ -14,7 +14,7 @@ urlpatterns = [
     url(r'', include('customer.urls')),
     url(r'', include('frontEnd.urls')),
     url(r'', include('service.urls')),
-    url(r'chat', include('core.urls')),
+    url(r'^chat/', include('core.urls')),
     url(r'', include('testapp.urls')),
 ]
 
