@@ -48,7 +48,7 @@ function drawMessage(message) {
     if (message.user === currentUser) {
         const chatItem = `<div class="d-flex justify-content-start mb-4 message ">
                             <div class="img_cont_msg">
-                                <img src="https://static.turbosquid.com/Preview/001292/481/WV/_D.jpg"
+                                <img src="https://static.turbosquid.com/Preview/001292/481/WV/_D.jpg" width='50px' height='50px'
                                      class="rounded-circle user_img_msg">
                             </div>
                             <div class="msg_cotainer">
@@ -69,7 +69,7 @@ function drawMessage(message) {
                                 <span class="msg_time_send">${date_str1}</span>
                             </div>
                             <div class="img_cont_msg">
-                                <img src="https://static.turbosquid.com/Preview/001292/481/WV/_D.jpg"
+                                <img src="https://static.turbosquid.com/Preview/001292/481/WV/_D.jpg" width='50px' height='50px'
                                      class="rounded-circle user_img_msg">
                             </div>
                             <br>
