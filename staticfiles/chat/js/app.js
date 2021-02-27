@@ -8,7 +8,7 @@ let atchBtn=$('#btn-attach');
 let curr_time=$('#curr-time');
 
 function updateUserList() {
-    $.getJSON('/user/', function (data) {
+    $.getJSON('/chat/chatuser/', function (data) {
         userList.children('.usernodes').remove();
         for (let i = 0; i < data.length; i++) {
             const userItem = `<li class="user-nodes">
@@ -84,7 +84,7 @@ function drawMessage(message) {
 }
 
 function getConversation(recipient) {
-    $.getJSON(`/message/?target=${recipient}`, function (data) {
+    $.getJSON(`chat/chatmessage/?target=${recipient}`, function (data) {
         messageList.children('.message').remove();
         for (let i = data['results'].length - 1; i >= 0; i--) {
             drawMessage(data['results'][i]);
@@ -96,7 +96,7 @@ function getConversation(recipient) {
 
 function getMessageById(message) {
     id = JSON.parse(message).message
-    $.getJSON(`/message/${id}/`, function (data) {
+    $.getJSON(`/chat/chatmessage/${id}/`, function (data) {
         if (data.user === currentRecipient ||
             (data.recipient === currentRecipient && data.user == currentUser)) {
             drawMessage(data);
@@ -106,7 +106,7 @@ function getMessageById(message) {
 }
 
 function sendMessage(recipient, body, filepath, filename) {
-    $.post('/message/', {
+    $.post('/chat/chatmessage/', {
         recipient: recipient,
         filepath: filepath,
         filename: filename,
@@ -187,7 +187,7 @@ $(document).ready(function () {
                  var input = $('#theFileInput').prop('files')[0];
                 console.log(input)
                 $('.progress').show();
-                  var url =  "/upload_file"
+                  var url =  "/chat/upload_file"
                   var fileName = input.name
                   console.log(input)
                   var fd = new FormData();
