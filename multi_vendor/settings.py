@@ -147,7 +147,6 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
-require 'rest-cl'
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
@@ -173,7 +172,7 @@ ActionMailer::Base.smtp_settings = {
   :address        => ENV['MAILGUN_SMTP_SERVER'],
   :user_name      => ENV['MAILGUN_SMTP_LOGIN'],
   :password       => ENV['MAILGUN_SMTP_PASSWORD'],
-  :domain         => 'yourapp.heroku.com',
+  :domain         => 'bizkonect.herokuapp.com',
   :authentication => :plain,
 }
 ActionMailer::Base.delivery_method = :smtp
